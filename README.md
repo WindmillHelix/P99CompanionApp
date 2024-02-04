@@ -1,7 +1,7 @@
 # P99 Companion #
 You've found P99 Companion, a companion tool for Project 1999 Everquest.
 
-TODO: Usage Pics
+<img width="1892" alt="image" src="https://github.com/WindmillHelix/P99Companion/blob/main/p99companion.png?raw=true">
 
 ### Features ###
 * Track character inventories through output files, with easy search and filtering
