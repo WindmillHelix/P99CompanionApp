@@ -12,6 +12,8 @@ namespace WindmillHelix.Companion99.Services.Models
 
         public string ItemName { get; set; }
 
+        public string ItemUrl { get; set; }
+
         public int ItemId { get; set; }
 
         public string Location { get; set; }

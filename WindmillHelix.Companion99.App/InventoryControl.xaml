@@ -41,7 +41,17 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>-->
                     </GridViewColumn>
-                    <GridViewColumn Header="Item" Width="300" DisplayMemberBinding="{Binding Path=ItemName}"/>
+                    <GridViewColumn Header="Item" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Hyperlink NavigateUri="{Binding ItemUrl}" RequestNavigate="Hyperlink_RequestNavigate">
+                                        <TextBlock Text="{Binding ItemName}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Item ID" Width="60" DisplayMemberBinding="{Binding Path=ItemId}"/>
                     <GridViewColumn Header="Count" Width="60" DisplayMemberBinding="{Binding Path=Count}"/>
                     <GridViewColumn Header="Location" Width="120" DisplayMemberBinding="{Binding Path=Location}"/>

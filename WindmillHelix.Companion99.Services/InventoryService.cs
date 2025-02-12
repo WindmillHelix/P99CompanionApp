@@ -88,7 +88,9 @@ namespace WindmillHelix.Companion99.Services
             {
                 var columns = line.Split('\t');
                 var itemId = int.Parse(columns[2]);
-                if(itemId > 0)
+                var itemUrl = "https://wiki.project1999.com/" + System.Net.WebUtility.UrlEncode(columns[1].Replace(" ", "_"));
+
+                if (itemId > 0)
                 {
                     var item = new InventoryItem
                     {
@@ -96,6 +98,7 @@ namespace WindmillHelix.Companion99.Services
                         Location = columns[0],
                         ItemId = itemId,
                         ItemName = columns[1],
+                        ItemUrl = itemUrl,
                         Count = int.Parse(columns[3])
                     };
 
