@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindmillHelix.Companion99.Services.Discord.Internals;
 
 namespace WindmillHelix.Companion99.Services.Config
 {
@@ -16,6 +17,8 @@ namespace WindmillHelix.Companion99.Services.Config
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.RegisterType<Discord2LogRunner>().AsSelf().SingleInstance();
+            builder.RegisterType<Log2DiscordRunner>().AsSelf().SingleInstance();
         }
     }
 }

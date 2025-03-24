@@ -41,10 +41,7 @@
                 <local:SocialsControl />
             </TabItem>            
             <TabItem Header="Settings">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                    </StackPanel>
-                </StackPanel>
+                <local:SettingsControl />
             </TabItem>
         </TabControl>
         <StatusBar Grid.Row="2">

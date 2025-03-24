@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Resources\background_dark.bmp" />
     <None Remove="Resources\background_light.bmp" />
+    <None Remove="Resources\Discord-Logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\book.ico" />
+    <Content Include="Resources\Discord-Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

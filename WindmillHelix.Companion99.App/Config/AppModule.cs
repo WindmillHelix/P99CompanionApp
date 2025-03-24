@@ -16,6 +16,10 @@ namespace WindmillHelix.Companion99.App.Config
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.RegisterTypes(
+                ThisAssembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && !x.IsInterface && x.Name.EndsWith("Window")).ToArray())
+                .AsSelf()
+                .InstancePerDependency();
         }
     }
 }

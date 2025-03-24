@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindmillHelix.Companion99.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindmillHelix.Companion99.Services", "WindmillHelix.Companion99.Services\WindmillHelix.Companion99.Services.csproj", "{3965075A-4CF9-40F6-8696-DB31A5544B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindmillHelix.Companion99.Data", "WindmillHelix.Companion99.Data\WindmillHelix.Companion99.Data.csproj", "{B4B8D486-0C29-4396-B46D-3644B0E78D40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindmillHelix.Companion99.Data", "WindmillHelix.Companion99.Data\WindmillHelix.Companion99.Data.csproj", "{B4B8D486-0C29-4396-B46D-3644B0E78D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindmillHelix.Companion99.ExternalApi", "WindmillHelix.Companion99.ExternalApi\WindmillHelix.Companion99.ExternalApi.csproj", "{1CA6490B-15AF-47F4-BD11-68833D7909C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B4B8D486-0C29-4396-B46D-3644B0E78D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4B8D486-0C29-4396-B46D-3644B0E78D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4B8D486-0C29-4396-B46D-3644B0E78D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA6490B-15AF-47F4-BD11-68833D7909C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA6490B-15AF-47F4-BD11-68833D7909C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA6490B-15AF-47F4-BD11-68833D7909C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA6490B-15AF-47F4-BD11-68833D7909C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WindmillHelix.Companion99.App.Services;
+using WindmillHelix.Companion99.Common.Threading;
 using WindmillHelix.Companion99.Services;
+using WindmillHelix.Companion99.Services.Discord;
 using WindmillHelix.Companion99.Services.Events;
 
 namespace WindmillHelix.Companion99.App
@@ -31,6 +33,9 @@ namespace WindmillHelix.Companion99.App
         private readonly IEventService _eventService;
         private readonly IKillControlService _killControlService; 
 
+        // must keep a reference to this around
+        private readonly IDiscordWorkerService _discordWorkerService;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +45,10 @@ namespace WindmillHelix.Companion99.App
             _inventoryService = DependencyInjector.Resolve<IInventoryService>();
             _eventService = DependencyInjector.Resolve<IEventService>();
             _killControlService = DependencyInjector.Resolve<IKillControlService>();
+            _discordWorkerService = DependencyInjector.Resolve<IDiscordWorkerService>();
+
+            // purposely not awaited
+            _discordWorkerService.StartAsync();
 
             _watcher = _inventoryService.CreateInventoryChangedWatcher();
             _watcher.Changed += HandleInventoryFilesChanged;
