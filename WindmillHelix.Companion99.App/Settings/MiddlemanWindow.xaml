@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App.Settings"
         mc:Ignorable="d"
-        Title="Middleman Configuration" Height="450" Width="800">
+        Title="Middleman Configuration" Height="200" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
