@@ -49,9 +49,9 @@ namespace WindmillHelix.Companion99.App.Settings
 
         private void LoadValues(DiscordConfiguration config)
         {
-            AccountsListView.ItemsSource = config.Accounts;
-            Log2DiscordListView.ItemsSource = config.Log2DiscordConfigEntries;
-            Discord2LogListView.ItemsSource = config.Discord2LogConfigEntries;
+            AccountsListView.ItemsSource = config.Accounts.OrderBy(x => x.Name).ToList();
+            Log2DiscordListView.ItemsSource = config.Log2DiscordConfigEntries.OrderBy(x => x.Name).ToList();
+            Discord2LogListView.ItemsSource = config.Discord2LogConfigEntries.OrderBy(x => x.Name).ToList();
 
             NewLog2DiscordButton.IsEnabled = config.Accounts.Count > 0;
         }
@@ -83,6 +83,7 @@ namespace WindmillHelix.Companion99.App.Settings
         {
             var entry = new Log2DiscordConfigEntry();
             entry.Log2DiscordConfigEntryId = Guid.NewGuid();
+            entry.IsEnabled = true;
 
             var window = DependencyInjector.Resolve<EditLog2DiscordWindow>();
             window.SetEntry(entry);

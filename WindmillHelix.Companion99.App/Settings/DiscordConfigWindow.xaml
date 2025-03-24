@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App"
         mc:Ignorable="d"
-        Title="Discord Configuration" Height="450" Width="800">
+        Title="Discord Configuration" Height="470" Width="800">
     <Window.Resources>
         <Style x:Key="itemstyle" TargetType="{x:Type ListViewItem}">
             <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick" />
@@ -69,9 +69,16 @@
                         </ListView.ItemTemplate>
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
-                                <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}">
+                                <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Path=Name}">
                                 </GridViewColumn>
-                                <GridViewColumn Header="Regex" Width="200" DisplayMemberBinding="{Binding Path=Regex}">
+                                <GridViewColumn Header="Enabled" Width="54">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=IsEnabled}" IsEnabled="False"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>                                
+                                <GridViewColumn Header="Regex" Width="250" DisplayMemberBinding="{Binding Path=Regex}">
                                 </GridViewColumn>                                
                                 <GridViewColumn Header="" Width="50">
                                     <GridViewColumn.CellTemplate>
@@ -106,7 +113,14 @@
                         </ListView.ItemTemplate>
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
-                                <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}">
+                                <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Path=Name}">
+                                </GridViewColumn>
+                                <GridViewColumn Header="Enabled" Width="54">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Path=IsEnabled}" IsEnabled="False"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Regex" Width="200" DisplayMemberBinding="{Binding Path=Regex}">
                                 </GridViewColumn>
