@@ -32,7 +32,7 @@ namespace WindmillHelix.Companion99.App.Settings
 
         public void SetEntry(Log2DiscordConfigEntry entry)
         {
-            _entryId = entry.DiscordAccountId;
+            _entryId = entry.Log2DiscordConfigEntryId;
             NameTextBox.Text = entry.Name;
             RegexTextBox.Text = entry.Regex;
             ChannelIdTextBox.Text = entry.TargetChannelId <= 0 ? string.Empty : entry.TargetChannelId.ToString();
@@ -57,6 +57,7 @@ namespace WindmillHelix.Companion99.App.Settings
 
             var entry = new Log2DiscordConfigEntry
             {
+                Log2DiscordConfigEntryId = _entryId,
                 DiscordAccountId = (DiscordAccountsComboBox.SelectedItem as DiscordAccount)?.DiscordAccountId ?? Guid.Empty,
                 Regex = RegexTextBox.Text,
                 Name = NameTextBox.Text,

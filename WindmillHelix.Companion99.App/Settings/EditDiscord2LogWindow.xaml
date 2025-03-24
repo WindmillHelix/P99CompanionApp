@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App"
         mc:Ignorable="d"
-        Title="Add/Edit Discord2Log Trigger" Height="450" Width="800">
+        Title="Add/Edit Discord2Log Trigger" Height="304" Width="620">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

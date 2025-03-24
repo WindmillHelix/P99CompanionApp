@@ -5,22 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App"
         mc:Ignorable="d"
-        Title="Add/Edit Discord Account" Height="450" Width="800">
+        Title="Add/Edit Discord Account" Height="160" Width="620">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
             <RowDefinition Height="28"/>
-            <RowDefinition Height="28"/>
+            <RowDefinition Height="36"/>
         </Grid.RowDefinitions>
         <Label Content="Name:" Grid.Row="0" Grid.Column="0" />
         <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" />
         <Label Content="Token:" Grid.Row="1" Grid.Column="0" />
         <TextBox x:Name="TokenTextBox" Grid.Row="1" Grid.Column="1" />
-        <Button x:Name="SaveButton" Content="Save" Click="SaveButton_Click" Width="120" Grid.Row="2" Grid.Column="0"/>
-        <Label Content="" x:Name="ErrorLabel" Foreground="Red" Grid.Row="2" Grid.Column="1" />
+
+        <StackPanel Orientation="Horizontal" Margin="4" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button x:Name="SaveButton" Content="Save" Click="SaveButton_Click" Width="120"/>
+            <Label Content="" x:Name="ErrorLabel" Foreground="Red" />
+        </StackPanel>
     </Grid>
 </Window>
