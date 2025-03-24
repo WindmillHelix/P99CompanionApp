@@ -12,6 +12,8 @@ namespace WindmillHelix.Companion99.Services
 
         bool IsAncientCyclopsTimerEnabled { get; set; }
 
+        bool ShouldAutoStartMiddleman { get; set; }
+
         bool IsValidEverQuestFolder(string folderLocation);
     }
 }

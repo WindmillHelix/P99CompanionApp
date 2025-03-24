@@ -31,5 +31,11 @@ namespace WindmillHelix.Companion99.App
             var window = DependencyInjector.Resolve<DiscordConfigWindow>();
             window.ShowDialog();
         }
+
+        private void MiddlemanButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = DependencyInjector.Resolve<MiddlemanWindow>();
+            window.ShowDialog();
+        }
     }
 }

@@ -33,8 +33,9 @@ namespace WindmillHelix.Companion99.App
         private readonly IEventService _eventService;
         private readonly IKillControlService _killControlService; 
 
-        // must keep a reference to this around
+        // must keep a reference to these around
         private readonly IDiscordWorkerService _discordWorkerService;
+        private readonly IMiddlemanService _middlemanService;
 
         public MainWindow()
         {
@@ -46,9 +47,16 @@ namespace WindmillHelix.Companion99.App
             _eventService = DependencyInjector.Resolve<IEventService>();
             _killControlService = DependencyInjector.Resolve<IKillControlService>();
             _discordWorkerService = DependencyInjector.Resolve<IDiscordWorkerService>();
+            _middlemanService = DependencyInjector.Resolve<IMiddlemanService>();
 
             // purposely not awaited
             _discordWorkerService.StartAsync();
+
+            if(_configurationService.ShouldAutoStartMiddleman)
+            {
+                // purposely not awaited
+                _middlemanService.StartMiddlemanAsync();
+            }
 
             _watcher = _inventoryService.CreateInventoryChangedWatcher();
             _watcher.Changed += HandleInventoryFilesChanged;

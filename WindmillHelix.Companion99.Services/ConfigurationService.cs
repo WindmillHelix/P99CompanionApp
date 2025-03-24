@@ -31,6 +31,12 @@ namespace WindmillHelix.Companion99.Services
             set => SetValue(nameof(IsAncientCyclopsTimerEnabled), value.ToString());
         }
 
+        public bool ShouldAutoStartMiddleman
+        {
+            get => GetBoolValue(nameof(ShouldAutoStartMiddleman), false);
+            set => SetValue(nameof(ShouldAutoStartMiddleman), value.ToString());
+        }
+
         private bool GetBoolValue(string key, bool defaultValue)
         {
             var value = GetValue(key);
