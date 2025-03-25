@@ -21,9 +21,7 @@
         </ToolBar>
         <TabControl Grid.Row="1">
             <TabItem Header="Main">
-                <ScrollViewer>
-                    <local:WhoResultsControl />
-                </ScrollViewer>
+                <local:WhoResultsControl />
             </TabItem>
             <TabItem Header="Inventory">
                 <local:InventoryControl />

@@ -169,7 +169,7 @@ namespace WindmillHelix.Companion99.App
 
             var summaries = guildNames.Select(x => $"{(string.IsNullOrEmpty(x) ? Unguilded : x)}: {filtered.Count(f => f.Guild == x)}").ToList();
             var labelText = string.Join(" | ", summaries);
-            GuildSummaryLabel.Content = labelText;
+            GuildSummaryLabel.Text = labelText;
         }
 
         private void UpdateClassStatistics(List<WhoResult> filtered)
@@ -178,7 +178,7 @@ namespace WindmillHelix.Companion99.App
 
             var summaries = classNames.Select(x => $"{x}: {filtered.Count(f => f.Class == x)}").ToList();
             var labelText = string.Join(" | ", summaries);
-            ClassSummaryLabel.Content = labelText;
+            ClassSummaryLabel.Text = labelText;
         }
 
         private List<WhoResult> ApplyClassFilter(List<WhoResult> items, string classSelection)

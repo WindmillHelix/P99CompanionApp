@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WindmillHelix.Companion99.Common;
 using WindmillHelix.Companion99.Services.Interop;
 
 namespace WindmillHelix.Companion99.Services
@@ -93,10 +94,7 @@ namespace WindmillHelix.Companion99.Services
 
         private string GetFilePath()
         {
-            var entryLocation = Assembly.GetEntryAssembly().Location;
-            var entryInfo = new FileInfo(entryLocation);
-
-            var path = Path.Combine(entryInfo.DirectoryName, MiddlemanConstants.FileName);
+            var path = Path.Combine(FileHelper.GetAppFolder(), MiddlemanConstants.FileName);
             return path;
         }
     }
