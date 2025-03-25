@@ -25,6 +25,11 @@
                     <Image Source="Resources/icons/stopwatch.png" Width="20" Height="20"/>
                 </Button.Content>
             </Button>
+            <Button x:Name="MapButton" HorizontalAlignment="Right" Click="MapButton_Click">
+                <Button.Content>
+                    <Image Source="Resources/icons/globe.png" Width="20" Height="20"/>
+                </Button.Content>
+            </Button>            
         </StackPanel>
         
         <TabControl Grid.Row="1">

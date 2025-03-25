@@ -13,11 +13,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindmillHelix.Companion99.App.Maps;
 using WindmillHelix.Companion99.App.Services;
 using WindmillHelix.Companion99.Common.Threading;
 using WindmillHelix.Companion99.Services;
 using WindmillHelix.Companion99.Services.Discord;
 using WindmillHelix.Companion99.Services.Events;
+using WindmillHelix.Companion99.Services.Maps;
 
 namespace WindmillHelix.Companion99.App
 {
@@ -36,6 +38,7 @@ namespace WindmillHelix.Companion99.App
         // must keep a reference to these around
         private readonly IDiscordWorkerService _discordWorkerService;
         private readonly IMiddlemanService _middlemanService;
+        private readonly ICurrentLocationService _currentLocationService;
 
         public MainWindow()
         {
@@ -48,6 +51,7 @@ namespace WindmillHelix.Companion99.App
             _killControlService = DependencyInjector.Resolve<IKillControlService>();
             _discordWorkerService = DependencyInjector.Resolve<IDiscordWorkerService>();
             _middlemanService = DependencyInjector.Resolve<IMiddlemanService>();
+            _currentLocationService = DependencyInjector.Resolve<ICurrentLocationService>();
 
             // purposely not awaited
             _discordWorkerService.StartAsync();
@@ -82,6 +86,12 @@ namespace WindmillHelix.Companion99.App
         {
             var stopwatchWindow = SingleWindowManager.GetWindow<StopwatchWindow>();
             stopwatchWindow.ShowOrActivate();
+        }
+
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            var mapWindow = SingleWindowManager.GetWindow<MapWindow>();
+            mapWindow.ShowOrActivate();
         }
     }
 }
