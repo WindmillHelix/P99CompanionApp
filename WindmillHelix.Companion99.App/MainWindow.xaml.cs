@@ -77,5 +77,11 @@ namespace WindmillHelix.Companion99.App
         {
             _eventService.Raise<InventoryFilesChangedEvent>();
         }
+
+        private void StopwatchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var stopwatchWindow = SingleWindowManager.GetWindow<StopwatchWindow>();
+            stopwatchWindow.ShowOrActivate();
+        }
     }
 }

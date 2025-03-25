@@ -19,6 +19,14 @@
                 <local:AncientCyclopsTimerControl x:Name="AncientCyclopsTimerControl" />
             </ToolBar.Items>
         </ToolBar>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Margin="0,2,15,2">
+            <Button x:Name="StopwatchButton" HorizontalAlignment="Right" Click="StopwatchButton_Click">
+                <Button.Content>
+                    <Image Source="Resources/icons/stopwatch.png" Width="20" Height="20"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        
         <TabControl Grid.Row="1">
             <TabItem Header="Main">
                 <local:WhoResultsControl />
