@@ -37,5 +37,11 @@ namespace WindmillHelix.Companion99.App
             var window = DependencyInjector.Resolve<MiddlemanWindow>();
             window.ShowDialog();
         }
+
+        private void MapsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = DependencyInjector.Resolve<MapConfigWindow>();
+            window.ShowDialog();
+        }
     }
 }

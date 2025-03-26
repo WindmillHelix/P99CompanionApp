@@ -37,6 +37,12 @@ namespace WindmillHelix.Companion99.Services
             set => SetValue(nameof(ShouldAutoStartMiddleman), value.ToString());
         }
 
+        public string MapsFolder
+        {
+            get => GetValue(nameof(MapsFolder));
+            set => SetValue(nameof(MapsFolder), value);
+        }
+
         private bool GetBoolValue(string key, bool defaultValue)
         {
             var value = GetValue(key);

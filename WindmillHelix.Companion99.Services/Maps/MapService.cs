@@ -11,25 +11,28 @@ namespace WindmillHelix.Companion99.Services.Maps
 {
     public class MapService : IMapService
     {
+        private readonly IConfigurationService _configurationService;
+
         private readonly List<string> _ignoreLayers = new List<string>();
 
-        public MapService()
+        public MapService(IConfigurationService configurationService)
         {
             _ignoreLayers.Add("2");
-        }
-
-        private string GetMapFolder()
-        {
-            return @"C:\Games\EQ\maps";
+            _configurationService = configurationService;
         }
 
         public Map GetMap(string zoneShortName)
         {
+            if (string.IsNullOrWhiteSpace(_configurationService.MapsFolder))
+            {
+                return null;
+            }
+
             var layers = new List<MapLayer>();
             var map = new Map();
             map.Layers = layers;
 
-            var baseFileName = Path.Combine(GetMapFolder(), zoneShortName + ".txt");
+            var baseFileName = Path.Combine(_configurationService.MapsFolder, zoneShortName + ".txt");
             if (File.Exists(baseFileName))
             {
                 var baseLayer = OpenLayer(baseFileName);
@@ -37,7 +40,7 @@ namespace WindmillHelix.Companion99.Services.Maps
                 layers.Add(baseLayer);
             }
 
-            var files = Directory.GetFiles(GetMapFolder(), zoneShortName + "_*.txt");
+            var files = Directory.GetFiles(_configurationService.MapsFolder, zoneShortName + "_*.txt");
 
             foreach (var file in files.OrderBy(x => x))
             {

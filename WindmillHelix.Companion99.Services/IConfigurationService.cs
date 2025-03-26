@@ -14,6 +14,8 @@ namespace WindmillHelix.Companion99.Services
 
         bool ShouldAutoStartMiddleman { get; set; }
 
+        string MapsFolder { get; set; }
+
         bool IsValidEverQuestFolder(string folderLocation);
     }
 }

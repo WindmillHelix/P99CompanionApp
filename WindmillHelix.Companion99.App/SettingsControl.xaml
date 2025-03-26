@@ -13,18 +13,25 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="86"/>
             <ColumnDefinition Width="86"/>
+            <ColumnDefinition Width="86"/>
         </Grid.ColumnDefinitions>
         <Button Click="DiscordIntegrationButton_Click" Margin="2" Grid.Row="0" Grid.Column="0">
             <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
                 <Image Source="Resources/Discord-Logo.png" Height="48" Width="48" />
-                <TextBlock Height="14" Foreground="Black" HorizontalAlignment="Center">Discord</TextBlock>
+                <TextBlock Height="16" Foreground="Black" HorizontalAlignment="Center">Discord</TextBlock>
             </StackPanel>
         </Button>
         <Button Click="MiddlemanButton_Click" Margin="2" Grid.Row="0" Grid.Column="1">
             <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
                 <Image Source="Resources/Middleman.png" Height="48" Width="48" />
-                <TextBlock Height="14" Foreground="Black" HorizontalAlignment="Center">Middleman</TextBlock>
+                <TextBlock Height="16" Foreground="Black" HorizontalAlignment="Center">Middleman</TextBlock>
             </StackPanel>
-        </Button>        
+        </Button>
+        <Button Click="MapsButton_Click" Margin="2" Grid.Row="0" Grid.Column="2">
+            <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
+                <Image Source="Resources/Map.png" Height="48" Width="48" />
+                <TextBlock Height="16" Foreground="Black" HorizontalAlignment="Center">Maps</TextBlock>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>
