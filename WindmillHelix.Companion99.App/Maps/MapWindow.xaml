@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App.Maps"
         mc:Ignorable="d"
-        Title="MapWindow" Height="450" Width="800">
+        Title="Map - P99 Companion" Height="450" Width="800">
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />

@@ -28,31 +28,48 @@ namespace WindmillHelix.Companion99.Services.Maps
         {
             const string locationPrefix = "Your Location is ";
             const string zonedPrefix = "You have entered ";
+
             if (line.StartsWith(zonedPrefix))
             {
                 var zone = line.Substring(zonedPrefix.Length).TrimEnd('.');
                 var zoneShortName = _zoneLookupService.GetShortName(zone);
-                var newLocation = new CurrentLocation
-                {
-                    ZoneShortName = zoneShortName,
-                    Location = null
-                };
-
-                CurrentLocation = newLocation;
-                _eventService.Raise<CurrentLocation>(newLocation);
+                SetNewZone(zoneShortName);
             }
-            else if(line.StartsWith(locationPrefix))
+            else if (line.StartsWith(locationPrefix))
             {
                 var location = GetLocation(line, locationPrefix);
-                var newLocation = new CurrentLocation
-                {
-                    ZoneShortName = CurrentLocation?.ZoneShortName,
-                    Location = location
-                };
-
-                CurrentLocation = newLocation;
-                _eventService.Raise<CurrentLocation>(newLocation);
+                SetNewZone(CurrentLocation?.ZoneShortName, location);
             }
+            else if (line.StartsWith("There are ") && line.Contains(" players in ") && !line.EndsWith(" EverQuest."))
+            {
+                var zone = line.Substring(line.IndexOf(" players in ") +  12).TrimEnd('.');
+                var zoneShortName = _zoneLookupService.GetShortName(zone);
+                if(CurrentLocation?.ZoneShortName != zoneShortName)
+                {
+                    SetNewZone(zoneShortName);
+                }
+            }
+            else if(line.StartsWith("There is") && line.Contains(" player in ") && !line.EndsWith(" EverQuest."))
+            {
+                var zone = line.Substring(line.IndexOf(" player in ") + 11).TrimEnd('.');
+                var zoneShortName = _zoneLookupService.GetShortName(zone);
+                if (CurrentLocation?.ZoneShortName != zoneShortName)
+                {
+                    SetNewZone(zoneShortName);
+                }
+            }
+        }
+
+        private void SetNewZone(string zoneShortName, Location location = null)
+        {
+            var newLocation = new CurrentLocation
+            {
+                ZoneShortName = zoneShortName,
+                Location = location
+            };
+
+            CurrentLocation = newLocation;
+            _eventService.Raise<CurrentLocation>(newLocation);
         }
 
         private Location GetLocation(string line, string prefix)
