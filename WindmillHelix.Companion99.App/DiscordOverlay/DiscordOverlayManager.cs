@@ -15,12 +15,12 @@ using System.Drawing.Imaging;
 
 namespace WindmillHelix.Companion99.App.DiscordOverlay
 {
-    public class DiscordOverlayManager
-    {
+	public class DiscordOverlayManager
+	{
 		private bool _isStarted = false;
 
-        private RenderForm _hostForm;
-        private OverlayForm _overlayForm;
+		private RenderForm _hostForm;
+		private OverlayForm _overlayForm;
 
 		private Bitmap _bitmapScreenshot;
 		private GraphicsD3D11 _graphics;
@@ -38,14 +38,14 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		}
 
 		public void Enable()
-        {
+		{
 			var start = new ThreadStart(() => DoEnable());
 			var thread = new Thread(start);
 			thread.Start();
 		}
 
 		private void DoEnable()
-        {
+		{
 			_hostForm = new HostForm();
 			_hostForm.ShowInTaskbar = false;
 			_hostForm.FormBorderStyle = FormBorderStyle.None;
@@ -68,7 +68,7 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		}
 
 		public void SetRunMode()
-        {
+		{
 			if (_overlayForm != null)
 			{
 				_overlayForm.BeginInvoke(new Action(() => _overlayForm.SetRunMode(Constants.DefaultTransparencyKey)));
@@ -76,32 +76,32 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		}
 
 		public void SetResizeMode()
-        {
-			if(_overlayForm != null)
-            {
+		{
+			if (_overlayForm != null)
+			{
 				_overlayForm.BeginInvoke(new Action(() => _overlayForm.SetResizeMode()));
-            }
-        }
+			}
+		}
 
 		public void Close()
-        {
+		{
 			_overlayForm?.Close();
 			_hostForm?.Close();
-        }
+		}
 
 		public void Start()
-        {
-			if(!_isStarted)
-            {
+		{
+			if (!_isStarted)
+			{
 				Enable();
 				SetRunMode();
 			}
-        }
+		}
 
-        public void Disable()
-        {
-            throw new NotImplementedException();
-        }
+		public void Disable()
+		{
+			throw new NotImplementedException();
+		}
 
 		private void RenderCallback()
 		{

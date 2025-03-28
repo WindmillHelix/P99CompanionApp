@@ -45,5 +45,5 @@ namespace DiscordOverlay
                 base.WndProc(ref message);
             }
         }
-	}
+    }
 }

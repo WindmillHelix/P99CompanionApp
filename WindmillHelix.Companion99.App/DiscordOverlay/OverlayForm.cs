@@ -34,12 +34,12 @@ namespace DiscordOverlay
 		}
 
 		public PictureBox OverlayTarget
-        {
+		{
 			get { return _overlayTarget; }
-        }
+		}
 
 		private void SetDefaults()
-        {
+		{
 			this.Text = string.Empty;
 			this.Name = "Discord Overlay";
 
@@ -60,7 +60,7 @@ namespace DiscordOverlay
 		}
 
 		private void SetupControls()
-        {
+		{
 			_overlayTarget = new PictureBox();
 			_overlayTarget.SizeMode = PictureBoxSizeMode.Normal;
 			_overlayTarget.BackColor = Constants.DefaultTransparencyKey;
@@ -69,12 +69,12 @@ namespace DiscordOverlay
 		}
 
 		private void SetupEvents()
-        {
-        }
+		{
+		}
 
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
+		protected override void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
 
 			this.Size = new Size(_configurationService.DiscordOverlaySize);
 			this.Location = _configurationService.DiscordOverlayLocation;
@@ -84,16 +84,16 @@ namespace DiscordOverlay
 		}
 
 		private void OverlayForm_LocationChanged(object? sender, EventArgs e)
-        {
-            _configurationService.DiscordOverlayLocation = this.Location;
-        }
+		{
+			_configurationService.DiscordOverlayLocation = this.Location;
+		}
 
-        private void OverlayForm_SizeChanged(object? sender, EventArgs e)
-        {
+		private void OverlayForm_SizeChanged(object? sender, EventArgs e)
+		{
 			_configurationService.DiscordOverlaySize = new Point(this.Size);
-        }
+		}
 
-        public void SetRunMode(Color transparencyColor)
+		public void SetRunMode(Color transparencyColor)
 		{
 			IsInResizeMode = false;
 			this.AllowTransparency = true;
@@ -106,9 +106,9 @@ namespace DiscordOverlay
 			this.Controls.Add(_overlayTarget);
 
 			if (!this.Controls.Contains(_overlayTarget))
-            {
+			{
 				this.Controls.Add(_overlayTarget);
-            }
+			}
 		}
 
 		public void SetResizeMode()
