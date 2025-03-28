@@ -85,8 +85,8 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 
 		public void Close()
 		{
-			_overlayForm?.Close();
-			_hostForm?.Close();
+			_overlayForm?.Invoke(() => _overlayForm.Close());
+			_hostForm?.Invoke(() => _hostForm.Close());
 		}
 
 		public void Start()

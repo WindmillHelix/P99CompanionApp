@@ -10,6 +10,8 @@ namespace WindmillHelix.Companion99.Services
     {
         void EnsureDataDirectoryExists();
 
+        void InitializeDatabase();
+
         bool IsEverQuestDirectoryValid();
     }
 }

@@ -10,14 +10,14 @@ namespace WindmillHelix.Companion99.Services
 {
     public class ConfigurationService : IConfigurationService
     {
-        private readonly IConfigurationFileService _configurationFileService;
+        private readonly IKeyValueRepository _keyValueRepository;
         private object _loadLock = new object();
         private bool _isLoaded = false;
         private IDictionary<string, string> _configurationCache = null;
 
-        public ConfigurationService(IConfigurationFileService configurationFileService)
+        public ConfigurationService(IKeyValueRepository keyValueRepository)
         {
-            _configurationFileService = configurationFileService;
+            _keyValueRepository = keyValueRepository;
         }
 
         public string EverQuestFolder 
@@ -100,7 +100,7 @@ namespace WindmillHelix.Companion99.Services
                 {
                     if(!_isLoaded)
                     {
-                        _configurationCache = _configurationFileService.GetAllValues();
+                        _configurationCache = _keyValueRepository.GetAllValues().ToDictionary(x => x.Key, x => x.Value);
                     }
                 }
             }
@@ -111,9 +111,7 @@ namespace WindmillHelix.Companion99.Services
 
         private void SetValue(string key, string value)
         {
-            var dictionary = new Dictionary<string, string>();
-            dictionary.Add(key, value);
-            _configurationFileService.SetValues(dictionary);
+            _keyValueRepository.SetValue(key, value);
             _configurationCache[key] = value;
         }
 

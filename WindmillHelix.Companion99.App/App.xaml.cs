@@ -21,6 +21,7 @@ namespace WindmillHelix.Companion99.App
             var eventService = DependencyInjector.Resolve<IEventService>();
 
             startupService.EnsureDataDirectoryExists();
+            startupService.InitializeDatabase();
 
             if(startupService.IsEverQuestDirectoryValid())
             {
