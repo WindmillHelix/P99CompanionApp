@@ -26,6 +26,8 @@ namespace WindmillHelix.Companion99.App
         public EditNoteWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
+
             _noteService = DependencyInjector.Resolve<INoteService>();
         }
 

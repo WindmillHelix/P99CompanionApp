@@ -13,6 +13,8 @@
     <None Remove="Resources\background_dark.bmp" />
     <None Remove="Resources\background_light.bmp" />
     <None Remove="Resources\Discord-Logo.png" />
+    <None Remove="Resources\Discord-Transfer.png" />
+    <None Remove="Resources\DiscordOverlay.png" />
     <None Remove="Resources\icons\globe.png" />
     <None Remove="Resources\icons\stopwatch.png" />
     <None Remove="Resources\Map.png" />
@@ -28,6 +30,12 @@
     </Content>
     <Content Include="Resources\book.ico" />
     <Content Include="Resources\Discord-Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Discord-Transfer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DiscordOverlay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\icons\globe.png">
@@ -46,6 +54,11 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>

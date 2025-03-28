@@ -27,6 +27,7 @@ namespace WindmillHelix.Companion99.App
         public SetupWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
 
             _configurationService = DependencyInjector.Resolve<IConfigurationService>();
             _eventService = DependencyInjector.Resolve<IEventService>();

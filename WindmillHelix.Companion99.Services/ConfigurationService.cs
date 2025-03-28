@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +38,47 @@ namespace WindmillHelix.Companion99.Services
             set => SetValue(nameof(ShouldAutoStartMiddleman), value.ToString());
         }
 
+        public bool IsDiscordOverlayEnabled
+        {
+            get => GetBoolValue(nameof(IsDiscordOverlayEnabled), false);
+            set => SetValue(nameof(IsDiscordOverlayEnabled), value.ToString());
+        }
+
         public string MapsFolder
         {
             get => GetValue(nameof(MapsFolder));
             set => SetValue(nameof(MapsFolder), value);
+        }
+
+        public Point DiscordOverlayLocation
+        {
+            get => GetPointValue(nameof(DiscordOverlayLocation), new Point(50, 50));
+            set => SetPointValue(nameof(DiscordOverlayLocation), value);
+        }
+
+        public Point DiscordOverlaySize
+        {
+            get => GetPointValue(nameof(DiscordOverlaySize), new Point(150, 250));
+            set => SetPointValue(nameof(DiscordOverlaySize), value);
+        }
+
+        private Point GetPointValue(string key, Point defaultValue)
+        {
+            var value = GetValue(key);
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return defaultValue;
+            }
+
+            var items = value.Split(',');
+            var result = new Point(int.Parse(items[0]), int.Parse(items[1]));
+            return result;
+        }
+
+        private void SetPointValue(string key, Point pointValue)
+        {
+            var value = $"{pointValue.X},{pointValue.Y}";
+            SetValue(key, value);
         }
 
         private bool GetBoolValue(string key, bool defaultValue)

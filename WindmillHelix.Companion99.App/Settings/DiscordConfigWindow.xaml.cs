@@ -29,6 +29,7 @@ namespace WindmillHelix.Companion99.App.Settings
             _discordConfigService = DependencyInjector.Resolve<IDiscordConfigService>();
 
             InitializeComponent();
+            this.SetupDefaults();
 
             var eventService = DependencyInjector.Resolve<IEventService>();
             eventService.AddSubscriber<DiscordConfiguration>(this);

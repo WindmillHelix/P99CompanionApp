@@ -45,6 +45,7 @@ namespace WindmillHelix.Companion99.App.Maps
         public MapWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
 
             _mapService = DependencyInjector.Resolve<IMapService>();
             _zoneLookupService = DependencyInjector.Resolve<IZoneLookupService>();

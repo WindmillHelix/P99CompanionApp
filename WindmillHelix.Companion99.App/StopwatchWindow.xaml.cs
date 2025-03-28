@@ -32,6 +32,8 @@ namespace WindmillHelix.Companion99.App
         public StopwatchWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
+
             WatchesListView.DataContext = _watches;
 
             _updateTimer.Tick += new EventHandler(DoUpdates);

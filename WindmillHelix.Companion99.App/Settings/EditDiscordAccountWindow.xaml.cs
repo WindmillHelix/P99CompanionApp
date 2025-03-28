@@ -27,6 +27,7 @@ namespace WindmillHelix.Companion99.App.Settings
         {
             _configService = DependencyInjector.Resolve<IDiscordConfigService>();
             InitializeComponent();
+            this.SetupDefaults();
         }
 
         public void SetAccount(DiscordAccount account)

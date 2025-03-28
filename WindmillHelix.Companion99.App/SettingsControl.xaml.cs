@@ -43,5 +43,11 @@ namespace WindmillHelix.Companion99.App
             var window = DependencyInjector.Resolve<MapConfigWindow>();
             window.ShowDialog();
         }
+
+        private void DiscordOverlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = SingleWindowManager.GetWindow<DiscordOverlayWindow>();
+            window.ShowOrActivate();
+        }
     }
 }

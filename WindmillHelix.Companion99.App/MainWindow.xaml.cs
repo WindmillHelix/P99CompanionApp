@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindmillHelix.Companion99.App.DiscordOverlay;
 using WindmillHelix.Companion99.App.Maps;
 using WindmillHelix.Companion99.App.Services;
 using WindmillHelix.Companion99.Common.Threading;
@@ -43,6 +44,7 @@ namespace WindmillHelix.Companion99.App
         public MainWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
 
             _logReaderService = DependencyInjector.Resolve<ILogReaderService>();
             _configurationService = DependencyInjector.Resolve<IConfigurationService>();
@@ -75,6 +77,22 @@ namespace WindmillHelix.Companion99.App
             base.OnActivated(e);
 
             _logReaderService.Start();
+
+            StartDiscordOverlay();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+        }
+
+        private async Task StartDiscordOverlay()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            if (_configurationService.IsDiscordOverlayEnabled)
+            {
+                DiscordOverlayBroker.Start();
+            }
         }
 
         private void HandleInventoryFilesChanged(object sender, FileSystemEventArgs e)
@@ -92,6 +110,12 @@ namespace WindmillHelix.Companion99.App
         {
             var mapWindow = SingleWindowManager.GetWindow<MapWindow>();
             mapWindow.ShowOrActivate();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            DiscordOverlayBroker.Close();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace WindmillHelix.Companion99.App.Settings
         public MiddlemanWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
 
             _middlemanService = DependencyInjector.Resolve<IMiddlemanService>();
             _configurationService = DependencyInjector.Resolve<IConfigurationService>();

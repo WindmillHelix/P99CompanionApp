@@ -25,6 +25,8 @@ namespace WindmillHelix.Companion99.App.Settings
         public MapConfigWindow()
         {
             InitializeComponent();
+            this.SetupDefaults();
+
             _configurationService = DependencyInjector.Resolve<IConfigurationService>();
 
             MapFolderTextBox.Text = _configurationService.MapsFolder;
