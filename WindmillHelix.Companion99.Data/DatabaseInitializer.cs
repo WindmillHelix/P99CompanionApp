@@ -38,7 +38,8 @@ namespace WindmillHelix.Companion99.Data
             var fileName = SqlHelper.GetSqliteFilePath();
             if(!File.Exists(fileName))
             {
-                File.Create(fileName);
+                var file = File.Create(fileName);
+                file.Close();
             }
         }
 

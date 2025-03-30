@@ -1,24 +1,24 @@
 ﻿CREATE TABLE IF NOT EXISTS KeyValuePair 
 (
-	ItemKey TEXT NOT NULL PRIMARY KEY,
+	ItemKey VARCHAR(50) NOT NULL PRIMARY KEY,
 	ItemValue TEXT NULL
 );
 
 CREATE TABLE IF NOT EXISTS ParkInformation 
 (
-	ServerName TEXT NOT NULL,
-	CharacterName TEXT NOT NULL,
-	Account TEXT NULL,
-	ZoneName TEXT NULL,
-	BindZone TEXT NULL,
-	SkyCorpseDate TEXT NULL,
+	ServerName VARCHAR(20) NOT NULL,
+	CharacterName VARCHAR(20) NOT NULL,
+	Account VARCHAR(20) NULL,
+	ZoneName VARCHAR(50) NULL,
+	BindZone VARCHAR(50) NULL,
+	SkyCorpseDate INT NULL,
 	PRIMARY KEY (ServerName, CharacterName)
 );
 
 CREATE TABLE IF NOT EXISTS CharacterNote 
 (
-	ServerName TEXT NOT NULL,
-	CharacterName TEXT NOT NULL,
+	ServerName VARCHAR(20) NOT NULL,
+	CharacterName VARCHAR(20) NOT NULL,
 	Note TEXT NULL,
 	PRIMARY KEY (ServerName, CharacterName)
 );

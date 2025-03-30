@@ -18,6 +18,6 @@ namespace WindmillHelix.Companion99.Data.Models
 
         public string BindZone { get; set; }
 
-        public DateTime SkyCorpseDate { get; set; }
+        public DateTime? SkyCorpseDate { get; set; }
     }
 }
