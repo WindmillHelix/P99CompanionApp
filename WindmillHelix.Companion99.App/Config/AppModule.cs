@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindmillHelix.Companion99.App.DiscordOverlay;
 
 namespace WindmillHelix.Companion99.App.Config
 {
@@ -20,6 +21,8 @@ namespace WindmillHelix.Companion99.App.Config
                 ThisAssembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && !x.IsInterface && x.Name.EndsWith("Window")).ToArray())
                 .AsSelf()
                 .InstancePerDependency();
+
+            builder.RegisterType<DiscordOverlayManager>().AsSelf().SingleInstance();
         }
     }
 }

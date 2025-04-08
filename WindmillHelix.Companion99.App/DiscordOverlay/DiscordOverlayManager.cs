@@ -12,11 +12,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiscordOverlay;
 using System.Drawing.Imaging;
+using WindmillHelix.Companion99.Services;
 
 namespace WindmillHelix.Companion99.App.DiscordOverlay
 {
 	public class DiscordOverlayManager
 	{
+		private readonly ILogService _logService;
+
 		private bool _isStarted = false;
 
 		private RenderForm _hostForm;
@@ -26,6 +29,12 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		private GraphicsD3D11 _graphics;
 
 		private PictureBox OverlayTarget => _overlayForm.OverlayTarget;
+		private Thread _thread;
+
+        public DiscordOverlayManager(ILogService logService)
+        {
+			_logService = logService;
+        }
 
 		Bitmap BitmapScreenshot
 		{
@@ -40,31 +49,59 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		public void Enable()
 		{
 			var start = new ThreadStart(() => DoEnable());
-			var thread = new Thread(start);
-			thread.Start();
+			_thread = new Thread(start);
+			_thread.Start();
 		}
 
 		private void DoEnable()
 		{
-			_hostForm = new HostForm();
-			_hostForm.ShowInTaskbar = false;
-			_hostForm.FormBorderStyle = FormBorderStyle.None;
-			_hostForm.BackColor = Constants.DefaultTransparencyKey;
+			Thread.CurrentThread.IsBackground = true;
+			while (true)
+			{
+				try
+				{
+					if (_hostForm == null || _hostForm.IsDisposed)
+					{
+						_hostForm = new HostForm();
+					}
 
-			_hostForm.Show();
-			_hostForm.Size = new System.Drawing.Size(790, 640);
+					_hostForm.ShowInTaskbar = false;
+					_hostForm.FormBorderStyle = FormBorderStyle.None;
+					_hostForm.BackColor = Constants.DefaultTransparencyKey;
 
-			_overlayForm = new OverlayForm();
-			_overlayForm.Show();
+					_hostForm.Show();
+					_hostForm.Size = new System.Drawing.Size(790, 640);
 
-			_graphics = new GraphicsD3D11();
-			_graphics.Initialize(_hostForm, true);
-			_overlayForm.Show();
+					if (_overlayForm == null || _overlayForm.IsDisposed)
+					{
+						_overlayForm = new OverlayForm();
+					}
 
-			BitmapScreenshot = new Bitmap(_hostForm.Width, _hostForm.Height, PixelFormat.Format32bppArgb);
-			_isStarted = true;
+					_overlayForm.Show();
 
-			RenderLoop.Run(_hostForm, RenderCallback, true);
+					_graphics = new GraphicsD3D11();
+					_graphics.Initialize(_hostForm, true);
+					_overlayForm.Show();
+
+					BitmapScreenshot = new Bitmap(_hostForm.Width, _hostForm.Height, PixelFormat.Format32bppArgb);
+					_isStarted = true;
+
+					RenderLoop.Run(_hostForm, RenderCallback, true);
+				}
+				catch (ThreadAbortException)
+				{
+					return;
+				}
+				catch(ThreadInterruptedException)
+                {
+					return;
+                }
+				catch (Exception thrown)
+				{
+					_logService.LogException(thrown);
+					Thread.Sleep(6000);
+				}
+			}
 		}
 
 		public void SetRunMode()
@@ -85,6 +122,7 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 
 		public void Close()
 		{
+			_thread?.Interrupt();
 			_overlayForm?.Invoke(() => _overlayForm.Close());
 			_hostForm?.Invoke(() => _hostForm.Close());
 		}
@@ -105,33 +143,45 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 
 		private void RenderCallback()
 		{
-			var stopWatch = Stopwatch.StartNew();
-			if (!_overlayForm.IsInResizeMode)
+			try
 			{
-				Draw();
-				var gfxScreenshot = Graphics.FromImage(BitmapScreenshot);
-				IntPtr dc = gfxScreenshot.GetHdc();
-				User32Methods.PrintWindow(_hostForm.Handle, dc, 0);
-				gfxScreenshot.ReleaseHdc();
-				gfxScreenshot.Dispose();
-				OverlayTarget.Invalidate();
-			}
-
-			// Calculate Frame Limiting
-			stopWatch.Stop();
-			long drawingTime = stopWatch.ElapsedTicks;
-
-			// todo: framerate
-			int frameRate = 25;
-			if (frameRate > 0)
-			{
-				int framerateTicks = 10000000 / frameRate;
-				long duration = framerateTicks - drawingTime;
-				if (duration > 0)
+				var stopWatch = Stopwatch.StartNew();
+				if (!_overlayForm.IsInResizeMode)
 				{
-					Thread.Sleep(new TimeSpan(duration));
+					Draw();
+					var gfxScreenshot = Graphics.FromImage(BitmapScreenshot);
+					IntPtr dc = gfxScreenshot.GetHdc();
+					User32Methods.PrintWindow(_hostForm.Handle, dc, 0);
+					gfxScreenshot.ReleaseHdc();
+					gfxScreenshot.Dispose();
+					OverlayTarget.Invalidate();
+				}
+
+				// Calculate Frame Limiting
+				stopWatch.Stop();
+				long drawingTime = stopWatch.ElapsedTicks;
+
+				// todo: framerate
+				int frameRate = 25;
+				if (frameRate > 0)
+				{
+					int framerateTicks = 10000000 / frameRate;
+					long duration = framerateTicks - drawingTime;
+					if (duration > 0)
+					{
+						Thread.Sleep(new TimeSpan(duration));
+					}
 				}
 			}
+			catch(ThreadAbortException)
+            {
+				return;
+            }
+			catch (Exception thrown)
+            {
+				_logService.LogException(thrown);
+				Thread.Sleep(2000);
+            }
 		}
 
 		private void Draw()

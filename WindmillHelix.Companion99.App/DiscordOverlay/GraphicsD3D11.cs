@@ -108,12 +108,12 @@ namespace DiscordOverlay
 
 		public void ClearRenderTargetView()
 		{
-			_deviceContext.ClearRenderTargetView(_renderTargetView, Constants.DefaultTransparencyKey.ToSharpDXColor());
+			_deviceContext?.ClearRenderTargetView(_renderTargetView, Constants.DefaultTransparencyKey.ToSharpDXColor());
 		}
 
 		public void PresentSwapChain()
 		{
-			_swapChain.Present(1, PresentFlags.None);
+			_swapChain?.Present(1, PresentFlags.None);
 		}
 	}
 }

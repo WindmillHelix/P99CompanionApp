@@ -8,31 +8,32 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 {
     public static class DiscordOverlayBroker
     {
-        private static DiscordOverlayManager _discordOverlayManager = new DiscordOverlayManager();
+        private static Lazy<DiscordOverlayManager> _discordOverlayManager
+            = new Lazy<DiscordOverlayManager>(() => DependencyInjector.Resolve<DiscordOverlayManager>());
 
         public static void Enable()
         {
-            _discordOverlayManager.Enable();
+            _discordOverlayManager.Value.Enable();
         }
 
         public static void Start()
         {
-            _discordOverlayManager.Start();
+            _discordOverlayManager.Value.Start();
         }
 
         public static void SetResizeMode()
         {
-            _discordOverlayManager.SetResizeMode();
+            _discordOverlayManager.Value.SetResizeMode();
         }
 
         public static void SetRunMode()
         {
-            _discordOverlayManager.SetRunMode();
+            _discordOverlayManager.Value.SetRunMode();
         }
 
         public static void Close()
         {
-            _discordOverlayManager.Close();
+            _discordOverlayManager.Value.Close();
         }
     }
 }

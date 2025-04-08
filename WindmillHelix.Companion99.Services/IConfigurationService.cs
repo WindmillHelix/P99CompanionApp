@@ -17,6 +17,8 @@ namespace WindmillHelix.Companion99.Services
 
         bool IsDiscordOverlayEnabled { get; set; }
 
+        bool ShouldAutoStartGina { get; set; }
+
         Point DiscordOverlayLocation { get; set; }
 
         Point DiscordOverlaySize { get; set; }

@@ -49,5 +49,11 @@ namespace WindmillHelix.Companion99.App
             var window = SingleWindowManager.GetWindow<DiscordOverlayWindow>();
             window.ShowOrActivate();
         }
+
+        private void GinaButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = DependencyInjector.Resolve<GinaWindow>();
+            window.ShowDialog();
+        }
     }
 }

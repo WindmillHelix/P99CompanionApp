@@ -34,11 +34,12 @@ namespace WindmillHelix.Companion99.App
         private readonly IInventoryService _inventoryService;
         private readonly FileSystemWatcher _watcher;
         private readonly IEventService _eventService;
-        private readonly IKillControlService _killControlService; 
+        private readonly IKillControlService _killControlService;
+
+        private readonly IAppLaunchService _appLaunchService;
 
         // must keep a reference to these around
         private readonly IDiscordWorkerService _discordWorkerService;
-        private readonly IMiddlemanService _middlemanService;
         private readonly ICurrentLocationService _currentLocationService;
 
         public MainWindow()
@@ -52,17 +53,15 @@ namespace WindmillHelix.Companion99.App
             _eventService = DependencyInjector.Resolve<IEventService>();
             _killControlService = DependencyInjector.Resolve<IKillControlService>();
             _discordWorkerService = DependencyInjector.Resolve<IDiscordWorkerService>();
-            _middlemanService = DependencyInjector.Resolve<IMiddlemanService>();
             _currentLocationService = DependencyInjector.Resolve<ICurrentLocationService>();
+
+            _appLaunchService = DependencyInjector.Resolve<IAppLaunchService>();
+
+            // purposely not awaited
+            _appLaunchService.OnLaunchAsync();
 
             // purposely not awaited
             _discordWorkerService.StartAsync();
-
-            if(_configurationService.ShouldAutoStartMiddleman)
-            {
-                // purposely not awaited
-                _middlemanService.StartMiddlemanAsync();
-            }
 
             _watcher = _inventoryService.CreateInventoryChangedWatcher();
             _watcher.Changed += HandleInventoryFilesChanged;
@@ -78,21 +77,13 @@ namespace WindmillHelix.Companion99.App
 
             _logReaderService.Start();
 
-            StartDiscordOverlay();
+            // purposely not awaited
+            _appLaunchService.OnActivateAsync();
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-        }
-
-        private async Task StartDiscordOverlay()
-        {
-            await Task.Delay(TimeSpan.FromSeconds(2));
-            if (_configurationService.IsDiscordOverlayEnabled)
-            {
-                DiscordOverlayBroker.Start();
-            }
         }
 
         private void HandleInventoryFilesChanged(object sender, FileSystemEventArgs e)

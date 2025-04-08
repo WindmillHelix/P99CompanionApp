@@ -15,6 +15,7 @@
             <ColumnDefinition Width="86"/>
             <ColumnDefinition Width="86"/>
             <ColumnDefinition Width="86"/>
+            <ColumnDefinition Width="86"/>
         </Grid.ColumnDefinitions>
         <Button Click="DiscordIntegrationButton_Click" Margin="2" Grid.Row="0" Grid.Column="0">
             <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
@@ -39,6 +40,12 @@
                 <Image Source="Resources/DiscordOverlay.png" Height="48" Width="48" />
                 <TextBlock Height="16" Foreground="Black" HorizontalAlignment="Center">Discord Overlay</TextBlock>
             </StackPanel>
-        </Button>        
+        </Button>
+        <Button Click="GinaButton_Click" Margin="2" Grid.Row="0" Grid.Column="4">
+            <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
+                <Image Source="Resources/Gina.png" Height="48" Width="48" />
+                <TextBlock Height="16" Foreground="Black" HorizontalAlignment="Center">GINA</TextBlock>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>

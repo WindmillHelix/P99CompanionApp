@@ -38,6 +38,12 @@ namespace WindmillHelix.Companion99.Services
             set => SetValue(nameof(ShouldAutoStartMiddleman), value.ToString());
         }
 
+        public bool ShouldAutoStartGina
+        {
+            get => GetBoolValue(nameof(ShouldAutoStartGina), false);
+            set => SetValue(nameof(ShouldAutoStartGina), value.ToString());
+        }
+
         public bool IsDiscordOverlayEnabled
         {
             get => GetBoolValue(nameof(IsDiscordOverlayEnabled), false);

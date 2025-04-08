@@ -50,14 +50,20 @@ namespace WindmillHelix.Companion99.App
 
                 if (value != _lastValue)
                 {
-                    Dispatcher.Invoke(() =>
+                    try
                     {
-                        TimerLabel.Content = value;
-                        TimerLabel.Background = colors.Item1;
-                        TimerLabel.Foreground = colors.Item2;
-                    });
+                        Dispatcher.Invoke(() =>
+                        {
+                            TimerLabel.Content = value;
+                            TimerLabel.Background = colors.Item1;
+                            TimerLabel.Foreground = colors.Item2;
+                        });
 
-                    _lastValue = value;
+                        _lastValue = value;
+                    }
+                    catch(TaskCanceledException)
+                    {
+                    }
                 }
 
                 Thread.Sleep(100);
