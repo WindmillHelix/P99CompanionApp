@@ -32,13 +32,14 @@ namespace WindmillHelix.Companion99.Data
         public void SaveParkInformation(ParkInformationModel model)
         {
             var sql = @"INSERT INTO ParkInformation
-                (ServerName, CharacterName, Account, ZoneName, BindZone, SkyCorpseDate) 
-                VALUES($serverName, $characterName, $account, $zoneName, $bindZone, $skyCorpseDate)
+                (ServerName, CharacterName, Account, ZoneName, BindZone, SkyCorpseDate, IsIgnored) 
+                VALUES($serverName, $characterName, $account, $zoneName, $bindZone, $skyCorpseDate, $isIgnored)
                 ON CONFLICT(ServerName, CharacterName) DO UPDATE SET 
                     Account = excluded.Account,
                     ZoneName = excluded.ZoneName,
                     BindZone = excluded.BindZone,
-                    SkyCorpseDate = excluded.SkyCorpseDate
+                    SkyCorpseDate = excluded.SkyCorpseDate,
+                    IsIgnored = excluded.IsIgnored
                 ";
 
             using (var conn = _connectionFactory.CreateConnection())
@@ -51,6 +52,7 @@ namespace WindmillHelix.Companion99.Data
                 command.Parameters.AddX("$zoneName", model.ZoneName);
                 command.Parameters.AddX("$bindZone", model.BindZone);
                 command.Parameters.AddX("$skyCorpseDate", DateUtil.ConvertToEpoch(model.SkyCorpseDate));
+                command.Parameters.AddX("$isIgnored", model.IsIgnored ? 1 : 0);
 
                 command.ExecuteNonQuery();
             }
@@ -82,6 +84,7 @@ namespace WindmillHelix.Companion99.Data
                 ZoneName = r.Field<string>(nameof(ParkInformationModel.ZoneName)),
                 BindZone = r.Field<string>(nameof(ParkInformationModel.BindZone)),
                 SkyCorpseDate = ConvertEpochDate(r.Field<long?>(nameof(ParkInformationModel.SkyCorpseDate))),
+                IsIgnored = r.Field<long>(nameof(ParkInformationModel.IsIgnored)) == 1
             };
 
             return result;

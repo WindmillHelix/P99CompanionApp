@@ -20,5 +20,7 @@ namespace WindmillHelix.Companion99.Services.Models
         public DateTime? SkyCorpseDate { get; set; }
 
         public string BindZone { get; set; }
+
+        public bool IsIgnored { get; set; }
     }
 }

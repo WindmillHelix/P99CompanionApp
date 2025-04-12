@@ -64,6 +64,17 @@ namespace WindmillHelix.Companion99.Services
                 });
         }
 
+        public void SetIgnored(string serverName, string characterName, bool isIgnored)
+        {
+            UpdateEntry(
+                serverName,
+                characterName,
+                a =>
+                {
+                    a.IsIgnored = isIgnored;
+                });
+        }
+
         public void RemoveEntry(string serverName, string characterName)
         {
             var item = _items.SingleOrDefault(
@@ -86,7 +97,8 @@ namespace WindmillHelix.Companion99.Services
                 CharacterName = source.CharacterName,
                 ServerName = source.ServerName,
                 SkyCorpseDate = source.SkyCorpseDate,
-                ZoneName = source.ZoneName
+                ZoneName = source.ZoneName,
+                IsIgnored = source.IsIgnored
             };
 
             return model;
@@ -131,7 +143,8 @@ namespace WindmillHelix.Companion99.Services
                             BindZone = x.BindZone,
                             ServerName = x.ServerName,
                             SkyCorpseDate = x.SkyCorpseDate,
-                            ZoneName = x.ZoneName
+                            ZoneName = x.ZoneName,
+                            IsIgnored = x.IsIgnored
                         }).ToList();
 
                         _items = items;

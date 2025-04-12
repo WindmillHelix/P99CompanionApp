@@ -1,0 +1,2 @@
+﻿ALTER TABLE ParkInformation
+	ADD COLUMN IsIgnored bit NOT NULL DEFAULT (0)
