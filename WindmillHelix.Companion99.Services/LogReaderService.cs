@@ -89,7 +89,7 @@ namespace WindmillHelix.Companion99.Services
 
                     logFile = OpenLogFile(latest.FullName);
                     reader = new StreamReader(logFile);
-                    var bufferLength = -1 * Math.Min(logFile.Length, 128 * 1024);
+                    var bufferLength = -1 * Math.Min(logFile.Length, 32 * 1024);
                     reader.BaseStream.Seek(bufferLength, SeekOrigin.End);
                     var buffer = reader.ReadToEnd();
                     var bufferLines = buffer.Split('\n').Select(x => x.Trim()).ToList();
@@ -99,6 +99,18 @@ namespace WindmillHelix.Companion99.Services
                     serverName = fileNameParts[2].Replace(".txt", string.Empty);
 
                     _currentLogFileName = latest.FullName;
+
+                    const string welcomeMessage = "] Welcome to EverQuest!";
+                    var welcomeIndex = bufferLines.FindLastIndex(x => x.EndsWith(welcomeMessage));
+
+                    if (welcomeIndex != -1)
+                    {
+                        for (int i = welcomeIndex; i < bufferLines.Count; i++)
+                        {
+                            var line = bufferLines[i];
+                            DispatchLine(serverName, characterName, line, x => x.Item1 > DateTime.Now.AddSeconds(-60));
+                        }
+                    }
                 }
 
                 if (reader != null)
@@ -119,11 +131,24 @@ namespace WindmillHelix.Companion99.Services
             }
         }
 
-        private void DispatchLine(string serverName, string characterName, string line)
+        private void DispatchLine(
+            string serverName, 
+            string characterName, 
+            string line, 
+            Func<Tuple<DateTime, string>, bool> filter = null)
         {
             var parsed = ParseLine(line);
             if (parsed != null)
             {
+                if(filter != null)
+                {
+                    var shouldDispatch = filter(parsed);
+                    if(!shouldDispatch)
+                    {
+                        return;
+                    }
+                }
+
                 var listeners = _listeners.ToArray();
 
                 foreach (var listener in listeners)
