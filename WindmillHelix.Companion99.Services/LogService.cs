@@ -43,6 +43,7 @@ namespace WindmillHelix.Companion99.Services
 
         private void WriteLog(string message, string callerMemberName, string callerFilePath)
         {
+            const string dateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
             var builder = new StringBuilder();
 
             var path = callerFilePath;
@@ -53,7 +54,7 @@ namespace WindmillHelix.Companion99.Services
                 path = path.Substring(index + 1);
             }
 
-            builder.AppendLine($"[{DateTime.Now}] [{path}].[{callerMemberName}]: {message}");
+            builder.AppendLine($"[{DateTime.Now.ToString(dateFormatString)}] [{path}].[{callerMemberName}]: {message}");
 
             var fileName = Path.Combine(FileHelper.GetDataFolder(), "app.log");
             File.AppendAllText(fileName, builder.ToString());
