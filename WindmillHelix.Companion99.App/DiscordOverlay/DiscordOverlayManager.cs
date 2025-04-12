@@ -46,14 +46,14 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		public void Enable()
+		public void Enable(Mode mode)
 		{
-			var start = new ThreadStart(() => DoEnable());
+			var start = new ThreadStart(() => DoEnable(mode));
 			_thread = new Thread(start);
 			_thread.Start();
 		}
 
-		private void DoEnable()
+		private void DoEnable(Mode mode)
 		{
 			Thread.CurrentThread.IsBackground = true;
 			while (true)
@@ -86,14 +86,17 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 					BitmapScreenshot = new Bitmap(_hostForm.Width, _hostForm.Height, PixelFormat.Format32bppArgb);
 					_isStarted = true;
 
+					SetMode(mode);
 					RenderLoop.Run(_hostForm, RenderCallback, true);
 				}
 				catch (ThreadAbortException)
 				{
+					_logService.Log("Caught ThreadAbortException");
 					return;
 				}
 				catch(ThreadInterruptedException)
                 {
+					_logService.Log("Caught ThreadInterruptedException");
 					return;
                 }
 				catch (Exception thrown)
@@ -104,10 +107,27 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		public void SetRunMode()
+		private void SetMode(Mode mode)
+        {
+            switch (mode)
+            {
+                case Mode.Run:
+					SetRunMode();
+                    break;
+                case Mode.Resize:
+					SetResizeMode();
+                    break;
+                default:
+					throw new ArgumentOutOfRangeException(nameof(mode));
+            }
+        }
+
+        public void SetRunMode()
 		{
+			_logService.Log("Invoked");
 			if (_overlayForm != null)
 			{
+				_logService.Log("Setting run mode on overlay form");
 				_overlayForm.BeginInvoke(new Action(() => _overlayForm.SetRunMode(Constants.DefaultTransparencyKey)));
 			}
 		}
@@ -131,9 +151,12 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 		{
 			if (!_isStarted)
 			{
-				Enable();
-				SetRunMode();
+				Enable(Mode.Run);
 			}
+			else
+            {
+				SetRunMode();
+            }
 		}
 
 		public void Disable()
@@ -189,5 +212,5 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			_graphics.ClearRenderTargetView();
 			_graphics.PresentSwapChain();
 		}
-	}
+    }
 }

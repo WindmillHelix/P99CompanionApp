@@ -13,6 +13,13 @@ namespace WindmillHelix.Companion99.Services
         public void LogException(
             Exception thrown,
             OptionalParameterDemarc optionalParameterDemarc = null,
-            [CallerMemberName] string caller = "");
+            [CallerMemberName] string callerMemberName = "",
+            [CallerFilePath] string callerFilePath = "");
+
+        public void Log(
+            string message,
+            OptionalParameterDemarc optionalParameterDemarc = null,
+            [CallerMemberName] string callerMemberName = "",
+            [CallerFilePath] string callerFilePath = "");
     }
 }

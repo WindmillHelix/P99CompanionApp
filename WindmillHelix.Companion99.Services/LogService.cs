@@ -10,13 +10,23 @@ namespace WindmillHelix.Companion99.Services
 {
     public class LogService : ILogService
     {
+        public void Log(
+            string message, 
+            OptionalParameterDemarc optionalParameterDemarc = null, 
+            [CallerMemberName] string callerMemberName = "",
+            [CallerFilePath] string callerFilePath = "")
+        {
+            WriteLog(message, callerMemberName, callerFilePath);
+        }
+
         public void LogException(
             Exception thrown,
             OptionalParameterDemarc optionalParameterDemarc = null,
-            [CallerMemberName] string caller = "")
+            [CallerMemberName] string callerMemberName = "",
+            [CallerFilePath] string callerFilePath = "")
         {
             var message = new StringBuilder();
-            message.AppendLine($"Unhandled exception from {caller} at {DateTime.Now}");
+            message.AppendLine($"Exception stack trace");
 
             var exception = thrown;
             while (exception != null)
@@ -28,9 +38,25 @@ namespace WindmillHelix.Companion99.Services
             }
 
             message.AppendLine();
+            WriteLog(message.ToString(), callerMemberName, callerFilePath);
+        }
+
+        private void WriteLog(string message, string callerMemberName, string callerFilePath)
+        {
+            var builder = new StringBuilder();
+
+            var path = callerFilePath;
+            var toFind = @"\WindmillHelix.Companion99.";
+            var index = path.IndexOf(toFind);
+            if (index > -1)
+            {
+                path = path.Substring(index + 1);
+            }
+
+            builder.AppendLine($"[{DateTime.Now}] [{path}].[{callerMemberName}]: {message}");
 
             var fileName = Path.Combine(FileHelper.GetDataFolder(), "app.log");
-            File.AppendAllText(fileName, message.ToString());
+            File.AppendAllText(fileName, builder.ToString());
         }
     }
 }

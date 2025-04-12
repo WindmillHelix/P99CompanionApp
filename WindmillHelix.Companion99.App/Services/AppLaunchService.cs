@@ -10,15 +10,18 @@ namespace WindmillHelix.Companion99.App.Services
 {
     public class AppLaunchService : IAppLaunchService
     {
+        private readonly ILogService _logService;
         private readonly IConfigurationService _configurationService;
         private readonly IMiddlemanService _middlemanService;
         private readonly IGinaService _ginaService;
 
         public AppLaunchService(
+            ILogService logService,
             IConfigurationService configurationService, 
             IMiddlemanService middlemanService,
             IGinaService ginaService)
         {
+            _logService = logService;
             _configurationService = configurationService;
             _middlemanService = middlemanService;
             _ginaService = ginaService;
@@ -26,6 +29,7 @@ namespace WindmillHelix.Companion99.App.Services
 
         public Task OnLaunchAsync()
         {
+            _logService.Log("AppLaunchService starting up");
             var task = Task.WhenAll(
                 LaunchGinaAsync(),
                 LaunchMiddlemanAsync());
