@@ -40,7 +40,10 @@ namespace WindmillHelix.Companion99.Services.Maps
                 var location = GetLocation(line, locationPrefix);
                 SetNewZone(CurrentLocation?.ZoneShortName, location);
             }
-            else if (line.StartsWith("There are ") && line.Contains(" players in ") && !line.EndsWith(" EverQuest."))
+            else if (line.StartsWith("There are ") 
+                && line.Contains(" players in ") 
+                && !line.EndsWith(" EverQuest.") 
+                && !line.StartsWith("There are no players "))
             {
                 var zone = line.Substring(line.IndexOf(" players in ") +  12).TrimEnd('.');
                 var zoneShortName = _zoneLookupService.GetShortName(zone);
@@ -49,7 +52,11 @@ namespace WindmillHelix.Companion99.Services.Maps
                     SetNewZone(zoneShortName);
                 }
             }
-            else if(line.StartsWith("There is") && line.Contains(" player in ") && !line.EndsWith(" EverQuest."))
+            else if(
+                line.StartsWith("There is") 
+                && line.Contains(" player in ") 
+                && !line.EndsWith(" EverQuest.")
+                && !line.StartsWith("There are no players "))
             {
                 var zone = line.Substring(line.IndexOf(" player in ") + 11).TrimEnd('.');
                 var zoneShortName = _zoneLookupService.GetShortName(zone);
