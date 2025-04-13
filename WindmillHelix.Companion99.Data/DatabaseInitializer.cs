@@ -70,6 +70,7 @@ namespace WindmillHelix.Companion99.Data
 
             RunSchemaScript("001_InitialSchema.sql", executedScripts);
             RunSchemaScript("002_IgnoredParkInfo.sql", executedScripts);
+            RunSchemaScript("003_WindowLocations.sql", executedScripts);
         }
 
         private void RunSchemaScript(string scriptName, List<string> alreadyExecuted)

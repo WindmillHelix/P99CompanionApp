@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WindmillHelix.Companion99.App.Services;
 using WindmillHelix.Companion99.Services;
 using WindmillHelix.Companion99.Services.Maps;
 using WindmillHelix.Companion99.Services.Models.Maps;

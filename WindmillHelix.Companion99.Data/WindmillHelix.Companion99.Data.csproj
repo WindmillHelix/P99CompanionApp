@@ -9,12 +9,14 @@
   <ItemGroup>
     <None Remove="SqlScripts\001_InitialSchema.sql" />
     <None Remove="SqlScripts\002_IgnoredParkInfo.sql" />
+    <None Remove="SqlScripts\003_WindowLocations.sql" />
     <None Remove="SqlScripts\SqlVersionTable.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="SqlScripts\001_InitialSchema.sql" />
     <EmbeddedResource Include="SqlScripts\002_IgnoredParkInfo.sql" />
+    <EmbeddedResource Include="SqlScripts\003_WindowLocations.sql" />
     <EmbeddedResource Include="SqlScripts\SqlVersionTable.sql" />
   </ItemGroup>
 

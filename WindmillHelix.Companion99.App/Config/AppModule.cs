@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindmillHelix.Companion99.App.DiscordOverlay;
+using WindmillHelix.Companion99.App.Services;
 
 namespace WindmillHelix.Companion99.App.Config
 {
@@ -23,6 +24,7 @@ namespace WindmillHelix.Companion99.App.Config
                 .InstancePerDependency();
 
             builder.RegisterType<DiscordOverlayManager>().AsSelf().SingleInstance();
+            builder.RegisterType<LocationSaver>().AsSelf().InstancePerDependency();
         }
     }
 }
