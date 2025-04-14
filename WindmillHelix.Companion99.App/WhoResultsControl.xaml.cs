@@ -29,8 +29,9 @@ namespace WindmillHelix.Companion99.App
 
         private ILineParserService _lineParserService;
 
-        private List<string> _resultsLines = new List<string>();
+        private List<Tuple<string, DateTime>> _resultsLines = new List<Tuple<string, DateTime>>();
         private List<WhoResult> _results = new List<WhoResult>();
+        private List<WhoResult> _filtered = new List<WhoResult>();
 
         public WhoResultsControl()
         {
@@ -111,7 +112,7 @@ namespace WindmillHelix.Companion99.App
                 var defaultZoneName = _lineParserService.GetZoneNameFromResultsEndcap(line);
 
                 var results = _resultsLines
-                    .Select(x => _lineParserService.ParseWhoResultLine(x, serverName, defaultZoneName))
+                    .Select(x => _lineParserService.ParseWhoResultLine(x.Item1, x.Item2, serverName, defaultZoneName))
                     .Where(x => x != null)
                     .OrderBy(x => string.IsNullOrEmpty(x.Note))
                     .ThenBy(x => x.Name)
@@ -127,7 +128,7 @@ namespace WindmillHelix.Companion99.App
                 return;
             }
 
-            _resultsLines.Add(line);
+            _resultsLines.Add(Tuple.Create(line, eventDate));
         }
 
         private void ApplyFiltersAndItemSource()
@@ -156,6 +157,7 @@ namespace WindmillHelix.Companion99.App
                 filtered = filtered.Where((x) => string.IsNullOrWhiteSpace(x.LookingForGroup)).ToList();
             }
 
+            _filtered = filtered;
             ResultsListView.ItemsSource = filtered;
             UpdateGuildStatistics(filtered);
             UpdateClassStatistics(filtered);
@@ -302,6 +304,13 @@ namespace WindmillHelix.Companion99.App
             {
                 _isResetting = false;
             }
+        }
+
+        private void EncounterLogsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var single = SingleWindowManager.GetWindow<EncounterLogsWindow>();
+            single.Window.Logs = _filtered;
+            single.ShowOrActivate();
         }
     }
 }

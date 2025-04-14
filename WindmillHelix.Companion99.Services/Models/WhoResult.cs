@@ -9,6 +9,8 @@ namespace WindmillHelix.Companion99.Services.Models
 {
     public class WhoResult : INotifyPropertyChanged
     {
+        public DateTime EventDate { get; set; }
+
         public string Class { get; set; }
 
         public int? Level { get; set; }
@@ -28,6 +30,8 @@ namespace WindmillHelix.Companion99.Services.Models
         public string LinkDead { get; set; }
 
         public string ServerName { get; set; }
+
+        public string OriginalLine { get; set; }
 
         private string _note;
 

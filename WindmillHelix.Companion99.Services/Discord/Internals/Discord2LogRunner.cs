@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using WindmillHelix.Companion99.Common;
 using WindmillHelix.Companion99.ExternalApi.Discord;
 
 namespace WindmillHelix.Companion99.Services.Discord.Internals
@@ -119,7 +120,7 @@ namespace WindmillHelix.Companion99.Services.Discord.Internals
 
             var logLine = string.Format(
                 "[{0}] {2}{1}\r\n",
-                DateTime.Now.ToString("ddd MMM dd HH:mm:ss yyyy"),
+                DateTime.Now.FormatForEverquestLog(),
                 content.Trim(),
                 filter.Prefix);
 

@@ -11,6 +11,6 @@ namespace WindmillHelix.Companion99.Services
     {
         string GetZoneNameFromResultsEndcap(string line);
 
-        WhoResult ParseWhoResultLine(string line, string serverName, string defaultZone);
+        WhoResult ParseWhoResultLine(string line, DateTime eventDate, string serverName, string defaultZone);
     }
 }

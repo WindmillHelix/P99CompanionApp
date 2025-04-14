@@ -17,6 +17,7 @@
     <None Remove="Resources\DiscordOverlay.png" />
     <None Remove="Resources\Gina.png" />
     <None Remove="Resources\icons\globe.png" />
+    <None Remove="Resources\icons\LogExport.png" />
     <None Remove="Resources\icons\stopwatch.png" />
     <None Remove="Resources\Map.png" />
     <None Remove="Resources\Middleman.png" />
@@ -43,6 +44,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\icons\globe.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icons\LogExport.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\icons\stopwatch.png">

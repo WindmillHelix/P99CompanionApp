@@ -18,5 +18,10 @@ namespace WindmillHelix.Companion99.Common
             var timespan = value.Value - DateTime.UnixEpoch;
             return (long)timespan.TotalSeconds;
         }
+
+        public static string FormatForEverquestLog(DateTime value)
+        {
+            return value.ToString("ddd MMM dd HH:mm:ss yyyy");
+        }
     }
 }

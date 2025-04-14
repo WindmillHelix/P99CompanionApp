@@ -59,6 +59,11 @@
                     <ComboBoxItem>Target</ComboBoxItem>
                     <ComboBoxItem>Tell</ComboBoxItem>
                 </ComboBox>
+                <Button x:Name="EncounterLogsButton" ToolTip="Encounter Logs" Click="EncounterLogsButton_Click" Margin="5,0,0,0">
+                    <Button.Content>
+                        <Image Source="Resources/icons/LogExport.png" Width="20" Height="20"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </DockPanel>
 
