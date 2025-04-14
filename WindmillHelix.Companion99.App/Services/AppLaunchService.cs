@@ -15,6 +15,8 @@ namespace WindmillHelix.Companion99.App.Services
         private readonly IMiddlemanService _middlemanService;
         private readonly IGinaService _ginaService;
 
+        private bool _hasBeenActivated = false;
+
         public AppLaunchService(
             ILogService logService,
             IConfigurationService configurationService, 
@@ -39,6 +41,13 @@ namespace WindmillHelix.Companion99.App.Services
 
         public Task OnActivateAsync()
         {
+            if(_hasBeenActivated)
+            {
+                return Task.CompletedTask;
+            }
+
+            _hasBeenActivated = true;
+
             var task = Task.WhenAll(
                 StartDiscordOverlay());
 
