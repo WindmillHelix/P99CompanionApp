@@ -37,6 +37,9 @@
             <TabItem Header="Main">
                 <local:WhoResultsControl />
             </TabItem>
+            <TabItem Header="Rolls">
+                <local:RandomsControl />
+            </TabItem>            
             <TabItem Header="Inventory">
                 <local:InventoryControl />
             </TabItem>
