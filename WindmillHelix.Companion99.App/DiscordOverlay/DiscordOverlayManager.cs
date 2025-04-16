@@ -46,13 +46,6 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		public void Enable(Mode mode)
-		{
-			var start = new ThreadStart(() => DoEnable(mode));
-			_thread = new Thread(start);
-			_thread.Start();
-		}
-
 		private void DoEnable(Mode mode)
 		{
 			Thread.CurrentThread.IsBackground = true;
@@ -107,7 +100,7 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		private void SetMode(Mode mode)
+		public void SetMode(Mode mode)
         {
             switch (mode)
             {
@@ -122,7 +115,7 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
             }
         }
 
-        public void SetRunMode()
+        private void SetRunMode()
 		{
 			_logService.Log("Invoked");
 			if (_overlayForm != null)
@@ -132,7 +125,7 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		public void SetResizeMode()
+		private void SetResizeMode()
 		{
 			if (_overlayForm != null)
 			{
@@ -140,28 +133,26 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
 			}
 		}
 
-		public void Close()
+		public void Stop()
 		{
 			_thread?.Interrupt();
 			_overlayForm?.Invoke(() => _overlayForm.Close());
 			_hostForm?.Invoke(() => _hostForm.Close());
+			_isStarted = false;
 		}
 
-		public void Start()
+		public void Start(Mode mode)
 		{
 			if (!_isStarted)
 			{
-				Enable(Mode.Run);
+                var start = new ThreadStart(() => DoEnable(mode));
+                _thread = new Thread(start);
+                _thread.Start();
 			}
 			else
             {
-				SetRunMode();
+				SetMode(mode);
             }
-		}
-
-		public void Disable()
-		{
-			throw new NotImplementedException();
 		}
 
 		private void RenderCallback()

@@ -15,34 +15,28 @@ namespace WindmillHelix.Companion99.App.DiscordOverlay
         private static Lazy<ILogService> _logService
             = new Lazy<ILogService>(() => DependencyInjector.Resolve<ILogService>());
 
-        public static void Enable()
+        public static void Start(Mode mode = Mode.Run)
         {
             _logService.Value.Log("Invoked");
-            _discordOverlayManager.Value.Enable(Mode.Resize);
-        }
-
-        public static void Start()
-        {
-            _logService.Value.Log("Invoked");
-            _discordOverlayManager.Value.Start();
+            _discordOverlayManager.Value.Start(mode);
         }
 
         public static void SetResizeMode()
         {
             _logService.Value.Log("Invoked");
-            _discordOverlayManager.Value.SetResizeMode();
+            _discordOverlayManager.Value.SetMode(Mode.Resize);
         }
 
         public static void SetRunMode()
         {
             _logService.Value.Log("Invoked");
-            _discordOverlayManager.Value.SetRunMode();
+            _discordOverlayManager.Value.SetMode(Mode.Run);
         }
 
-        public static void Close()
+        public static void Stop()
         {
             _logService.Value.Log("Invoked");
-            _discordOverlayManager.Value.Close();
+            _discordOverlayManager.Value.Stop();
         }
     }
 }

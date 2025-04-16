@@ -40,15 +40,13 @@ namespace WindmillHelix.Companion99.App.Settings
         private void EnableButton_Click(object sender, RoutedEventArgs e)
         {
             _configurationService.IsDiscordOverlayEnabled = true;
-            DiscordOverlayBroker.Enable();
-            Thread.Sleep(1000);
-            DiscordOverlayBroker.SetResizeMode();
+            DiscordOverlayBroker.Start(Mode.Resize);
         }
 
         private void DisableButton_Click(object sender, RoutedEventArgs e)
         {
             _configurationService.IsDiscordOverlayEnabled = false;
-            DiscordOverlayBroker.Close();
+            DiscordOverlayBroker.Stop();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -56,8 +54,7 @@ namespace WindmillHelix.Companion99.App.Settings
             base.OnClosed(e);
             if(_configurationService.IsDiscordOverlayEnabled)
             {
-                DiscordOverlayBroker.Start();
-                DiscordOverlayBroker.SetRunMode();
+                DiscordOverlayBroker.Start(Mode.Run);
             }
         }
     }

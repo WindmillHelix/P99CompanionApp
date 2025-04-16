@@ -106,7 +106,7 @@ namespace WindmillHelix.Companion99.App
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            DiscordOverlayBroker.Close();
+            DiscordOverlayBroker.Stop();
         }
     }
 }
