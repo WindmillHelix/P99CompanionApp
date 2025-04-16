@@ -34,28 +34,28 @@
         </StackPanel>
         
         <TabControl Grid.Row="1">
-            <TabItem Header="Main">
+            <TabItem Header="Main" Width="66">
                 <local:WhoResultsControl />
             </TabItem>
-            <TabItem Header="Rolls">
+            <TabItem Header="Rolls" Width="66">
                 <local:RandomsControl />
-            </TabItem>            
-            <TabItem Header="Inventory">
+            </TabItem>
+            <TabItem Header="Inventory" Width="66">
                 <local:InventoryControl />
             </TabItem>
-            <TabItem Header="Spells">
+            <TabItem Header="Spells" Width="66">
                 <local:SpellbookControl />
             </TabItem>
-            <TabItem Header="Notes">
+            <TabItem Header="Notes" Width="66">
                 <local:NotesControl />
             </TabItem>
-            <TabItem Header="Park Info">
+            <TabItem Header="Park Info" Width="66">
                 <local:LastZoneControl />
-            </TabItem>            
-            <TabItem Header="Socials">
+            </TabItem>
+            <TabItem Header="Socials" Width="66">
                 <local:SocialsControl />
-            </TabItem>            
-            <TabItem Header="Settings">
+            </TabItem>
+            <TabItem Header="Settings" Width="66">
                 <local:SettingsControl />
             </TabItem>
         </TabControl>
