@@ -107,6 +107,7 @@ namespace WindmillHelix.Companion99.App
         {
             base.OnClosed(e);
             DiscordOverlayBroker.Stop();
+            Application.Current.Shutdown();
         }
     }
 }
