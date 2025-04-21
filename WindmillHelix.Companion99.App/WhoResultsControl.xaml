@@ -9,100 +9,101 @@
     <UserControl.Resources>
         <Style x:Key="itemstyle" TargetType="{x:Type ListViewItem}">
             <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick" />
-            <!--<Setter Property="ContextMenu">
-                <Setter.Value>
-                    <ContextMenu>
-                        <MenuItem Header="Tell" Click="{Binding Click="MenuItem_Click"}" ></MenuItem>
-                        <MenuItem Header="Target" ></MenuItem>
-                        <MenuItem Header="Note" ></MenuItem>
-                    </ContextMenu>
-                </Setter.Value>
-            </Setter>-->
         </Style>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <DockPanel HorizontalAlignment="Stretch" Margin="2">
-                <Label Content="Class:"/>
-                <ComboBox x:Name="ClassComboBox" Width="160px">
-                    <ComboBoxItem>Any</ComboBoxItem>
-                    <Separator />
-                    <ComboBoxItem>Bard</ComboBoxItem>
-                    <ComboBoxItem>Cleric</ComboBoxItem>
-                    <ComboBoxItem>Druid</ComboBoxItem>
-                    <ComboBoxItem>Enchanter</ComboBoxItem>
-                    <ComboBoxItem>Magician</ComboBoxItem>
-                    <ComboBoxItem>Monk</ComboBoxItem>
-                    <ComboBoxItem>Necromancer</ComboBoxItem>
-                    <ComboBoxItem>Paladin</ComboBoxItem>
-                    <ComboBoxItem>Ranger</ComboBoxItem>
-                    <ComboBoxItem>Rogue</ComboBoxItem>
-                    <ComboBoxItem>ShadowKnight</ComboBoxItem>
-                    <ComboBoxItem>Shaman</ComboBoxItem>
-                    <ComboBoxItem>Warrior</ComboBoxItem>
-                    <ComboBoxItem>Wizard</ComboBoxItem>
-                    <Separator />
-                    <ComboBoxItem>Unknown/Anonymous</ComboBoxItem>
-                    <ComboBoxItem>+Melee DPS</ComboBoxItem>
-                    <ComboBoxItem>+Tank</ComboBoxItem>
-                    <ComboBoxItem>+Priest</ComboBoxItem>
-                    <ComboBoxItem>+Porter</ComboBoxItem>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="38"/>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Stretch" Grid.Row="0">
+            <Label Content="Class:"/>
+            <ComboBox x:Name="ClassComboBox" Width="160px">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <Separator />
+                <ComboBoxItem>Bard</ComboBoxItem>
+                <ComboBoxItem>Cleric</ComboBoxItem>
+                <ComboBoxItem>Druid</ComboBoxItem>
+                <ComboBoxItem>Enchanter</ComboBoxItem>
+                <ComboBoxItem>Magician</ComboBoxItem>
+                <ComboBoxItem>Monk</ComboBoxItem>
+                <ComboBoxItem>Necromancer</ComboBoxItem>
+                <ComboBoxItem>Paladin</ComboBoxItem>
+                <ComboBoxItem>Ranger</ComboBoxItem>
+                <ComboBoxItem>Rogue</ComboBoxItem>
+                <ComboBoxItem>ShadowKnight</ComboBoxItem>
+                <ComboBoxItem>Shaman</ComboBoxItem>
+                <ComboBoxItem>Warrior</ComboBoxItem>
+                <ComboBoxItem>Wizard</ComboBoxItem>
+                <Separator />
+                <ComboBoxItem>Unknown/Anonymous</ComboBoxItem>
+                <ComboBoxItem>+Melee DPS</ComboBoxItem>
+                <ComboBoxItem>+Tank</ComboBoxItem>
+                <ComboBoxItem>+Priest</ComboBoxItem>
+                <ComboBoxItem>+Porter</ComboBoxItem>
+            </ComboBox>
+            <Label Content="Guild:"/>
+            <TextBox x:Name="GuildTextBox" Width="100px" />
+            <Label Content="LFG:"/>
+            <ComboBox x:Name="LfgComboBox" Width="60px">
+                <ComboBoxItem>Any</ComboBoxItem>
+                <ComboBoxItem>Yes</ComboBoxItem>
+                <ComboBoxItem>No</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="ResetButton" Content="Reset" Click="ResetButton_Click" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Content="Action:"/>
+                <ComboBox x:Name="ActionComboBox" Width="60px">
+                    <ComboBoxItem>Note</ComboBoxItem>
+                    <ComboBoxItem>Target</ComboBoxItem>
+                    <ComboBoxItem>Tell</ComboBoxItem>
                 </ComboBox>
-                <Label Content="Guild:"/>
-                <TextBox x:Name="GuildTextBox" Width="100px" />
-                <Label Content="LFG:"/>
-                <ComboBox x:Name="LfgComboBox" Width="60px">
-                    <ComboBoxItem>Any</ComboBoxItem>
-                    <ComboBoxItem>Yes</ComboBoxItem>
-                    <ComboBoxItem>No</ComboBoxItem>
-                </ComboBox>
-                <Button x:Name="ResetButton" Content="Reset" Click="ResetButton_Click" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label Content="Action:"/>
-                    <ComboBox x:Name="ActionComboBox" Width="60px">
-                        <ComboBoxItem>Note</ComboBoxItem>
-                        <ComboBoxItem>Target</ComboBoxItem>
-                        <ComboBoxItem>Tell</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-            </DockPanel>
-            <ListView Grid.Row="1" x:Name="ResultsListView" ItemContainerStyle="{StaticResource itemstyle}">
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Note" Click="MenuItem_Click" ></MenuItem>
-                        <MenuItem Header="Target" Click="MenuItem_Click" ></MenuItem>
-                        <MenuItem Header="Consent" Click="MenuItem_Click" ></MenuItem>
-                        <MenuItem Header="Tell" Click="MenuItem_Click" ></MenuItem>
-                    </ContextMenu>                    
-                </ListView.ContextMenu>
-                <!--<ListView.Background>
-                <ImageBrush ImageSource="/Resources/background_light.bmp"></ImageBrush>
-            </ListView.Background>-->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Text}">
-                            <TextBlock.Foreground>
-                                <SolidColorBrush Color="White"/>
-                            </TextBlock.Foreground>
-                        </TextBlock>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true">
-                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Path=Name}"/>
-                        <GridViewColumn Header="Class" Width="100" DisplayMemberBinding="{Binding Path=Class}"/>
-                        <GridViewColumn Header="Level" Width="40" DisplayMemberBinding="{Binding Path=Level}"/>
-                        <GridViewColumn Header="Race" Width="60" DisplayMemberBinding="{Binding Path=Race}"/>
-                        <GridViewColumn Header="Zone" Width="120" DisplayMemberBinding="{Binding Path=ZoneName}"/>
-                        <GridViewColumn Header="Guild" Width="160" DisplayMemberBinding="{Binding Path=Guild}"/>
-                        <GridViewColumn Header="LFG" Width="40" DisplayMemberBinding="{Binding Path=LookingForGroup}"/>
-                        <GridViewColumn Header="AFK" Width="40" DisplayMemberBinding="{Binding Path=AwayFromKeyboard}"/>
-                        <GridViewColumn Header="Note" Width="200" DisplayMemberBinding="{Binding Path=Note}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label x:Name="GuildSummaryLabel"/>
-            <Label x:Name="ClassSummaryLabel"/>
+                <Button x:Name="EncounterLogsButton" ToolTip="Encounter Logs" Click="EncounterLogsButton_Click" Margin="5,0,0,0">
+                    <Button.Content>
+                        <Image Source="Resources/icons/LogExport.png" Width="20" Height="20"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
+
+        <ListView Grid.Row="1" x:Name="ResultsListView" ItemContainerStyle="{StaticResource itemstyle}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Note" Click="MenuItem_Click" ></MenuItem>
+                    <MenuItem Header="Target" Click="MenuItem_Click" ></MenuItem>
+                    <MenuItem Header="Consent" Click="MenuItem_Click" ></MenuItem>
+                    <MenuItem Header="Tell" Click="MenuItem_Click" ></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="White"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView AllowsColumnReorder="true">
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Class" Width="100" DisplayMemberBinding="{Binding Path=Class}"/>
+                    <GridViewColumn Header="Level" Width="40" DisplayMemberBinding="{Binding Path=Level}"/>
+                    <GridViewColumn Header="Race" Width="60" DisplayMemberBinding="{Binding Path=Race}"/>
+                    <GridViewColumn Header="Zone" Width="120" DisplayMemberBinding="{Binding Path=ZoneName}"/>
+                    <GridViewColumn Header="Guild" Width="160" DisplayMemberBinding="{Binding Path=Guild}"/>
+                    <GridViewColumn Header="LFG" Width="40" DisplayMemberBinding="{Binding Path=LookingForGroup}"/>
+                    <GridViewColumn Header="AFK" Width="40" DisplayMemberBinding="{Binding Path=AwayFromKeyboard}"/>
+                    <GridViewColumn Header="Note" Width="200" DisplayMemberBinding="{Binding Path=Note}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2  " Background="#E5E5E5">
+            <TextBlock x:Name="GuildSummaryLabel" Margin="5,2,5,2" />
+            <TextBlock x:Name="ClassSummaryLabel" Margin="5,0,5,1" />
         </StackPanel>
     </Grid>
 </UserControl>

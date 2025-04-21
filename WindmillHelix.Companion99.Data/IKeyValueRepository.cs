@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindmillHelix.Companion99.Data
 {
-    public interface IConfigurationFileService
+    public interface IKeyValueRepository
     {
-        void SetValues(IDictionary<string, string> items);
+        void SetValue(string key, string value);
 
-        IDictionary<string, string> GetAllValues();
+        IReadOnlyDictionary<string, string> GetAllValues();
     }
 }

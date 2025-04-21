@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using WindmillHelix.Companion99.Common;
+using WindmillHelix.Companion99.Data;
+using WindmillHelix.Companion99.Data.Models;
 using WindmillHelix.Companion99.Services.Models;
 
 namespace WindmillHelix.Companion99.Services
@@ -14,12 +16,12 @@ namespace WindmillHelix.Companion99.Services
         private List<CharacterZone> _items;
         private bool _isInitialized = false;
         private object _lock = new object();
-        private string _fileName;
+        private readonly IParkInformationRepository _parkInformationRepository;
 
-        public LastZoneService()
+        public LastZoneService(IParkInformationRepository parkInformationRepository)
         {
             _items = new List<CharacterZone>();
-            _fileName = Path.Combine(FileHelper.GetDataFolder(), "LastZone.xml");
+            _parkInformationRepository = parkInformationRepository;
         }
 
         public IReadOnlyCollection<CharacterZone> GetLastZones()
@@ -62,6 +64,17 @@ namespace WindmillHelix.Companion99.Services
                 });
         }
 
+        public void SetIgnored(string serverName, string characterName, bool isIgnored)
+        {
+            UpdateEntry(
+                serverName,
+                characterName,
+                a =>
+                {
+                    a.IsIgnored = isIgnored;
+                });
+        }
+
         public void RemoveEntry(string serverName, string characterName)
         {
             var item = _items.SingleOrDefault(
@@ -71,17 +84,24 @@ namespace WindmillHelix.Companion99.Services
             if (item != null)
             {
                 _items.Remove(item);
-                CommitItems();
+                _parkInformationRepository.DeleteParkInformation(item.ServerName, item.CharacterName);
             }
         }
 
-        private void CommitItems()
+        private ParkInformationModel ConvertToDatabaseModel(CharacterZone source)
         {
-            var serializer = new XmlSerializer(typeof(CharacterZone[]));
-            using (var fs = new FileStream(_fileName, FileMode.Create))
+            var model = new ParkInformationModel()
             {
-                serializer.Serialize(fs, _items.ToArray());
-            }
+                Account = source.Account,
+                BindZone = source.BindZone,
+                CharacterName = source.CharacterName,
+                ServerName = source.ServerName,
+                SkyCorpseDate = source.SkyCorpseDate,
+                ZoneName = source.ZoneName,
+                IsIgnored = source.IsIgnored
+            };
+
+            return model;
         }
 
         private void UpdateEntry(string serverName, string characterName, Action<CharacterZone> action)
@@ -95,7 +115,7 @@ namespace WindmillHelix.Companion99.Services
                 item = new CharacterZone
                 {
                     ServerName = serverName,
-                    CharacterName = FixCharacterCasing(characterName)
+                    CharacterName = NamingUtil.FixCharacterCasing(characterName)
                 };
 
                 _items.Add(item);
@@ -103,13 +123,8 @@ namespace WindmillHelix.Companion99.Services
 
             action(item);
 
-            CommitItems();
-        }
-
-        private string FixCharacterCasing(string characterName)
-        {
-            var fixedName = characterName.Substring(0, 1).ToUpper() + characterName.Substring(1).ToLower();
-            return fixedName;
+            var model = ConvertToDatabaseModel(item);
+            _parkInformationRepository.SaveParkInformation(model);
         }
 
         private void EnsureInitialized()
@@ -120,21 +135,19 @@ namespace WindmillHelix.Companion99.Services
                 {
                     if (!_isInitialized)
                     {
-                        var serializer = new XmlSerializer(typeof(CharacterZone[]));
-                        if (File.Exists(_fileName))
+                        var parkInfo = _parkInformationRepository.GetAll();
+                        var items = parkInfo.Select(x => new CharacterZone
                         {
-                            using (var fs = new FileStream(_fileName, FileMode.Open))
-                            {
-                                var items = (CharacterZone[])serializer.Deserialize(fs);
-                                foreach (var item in items)
-                                {
-                                    item.CharacterName = FixCharacterCasing(item.CharacterName);
-                                }
+                            Account = x.Account,
+                            CharacterName = x.CharacterName,
+                            BindZone = x.BindZone,
+                            ServerName = x.ServerName,
+                            SkyCorpseDate = x.SkyCorpseDate,
+                            ZoneName = x.ZoneName,
+                            IsIgnored = x.IsIgnored
+                        }).ToList();
 
-                                _items = items.ToList();
-                            }
-                        }
-
+                        _items = items;
                         _isInitialized = true;
                     }
                 }

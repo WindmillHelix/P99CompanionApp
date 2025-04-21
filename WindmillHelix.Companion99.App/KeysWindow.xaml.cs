@@ -30,6 +30,7 @@ namespace WindmillHelix.Companion99.App
         public KeysWindow()
         {
             InitializeComponent();
+            this.SetupDefaults(shouldSaveWindowLocations: false);
         }
 
         public IReadOnlyCollection<InventoryItem> Items { get; set; }

@@ -6,6 +6,11 @@
              xmlns:local="clr-namespace:WindmillHelix.Companion99.App"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="itemstyle" TargetType="{x:Type ListViewItem}">
+            <EventSetter Event="MouseRightButtonUp" Handler="HandleRightClick" />
+        </Style>
+    </UserControl.Resources>    
     <Grid>
             <Grid>
             <Grid.RowDefinitions>
@@ -16,9 +21,13 @@
             <DockPanel HorizontalAlignment="Left" Margin="2" Grid.Row="0">
                 <Label Content="Search:"/>
                 <TextBox x:Name="SearchTextBox" Width="200px" />
+              
                 <Button x:Name="ResetButton" Content="Reset" Click="ResetButton_Click" Width="40px" />
+
+                <CheckBox x:Name="IncludeIgnoredCheckBox" Margin="20,0,0,0" VerticalAlignment="Center" Checked="IncludeIgnoredCheckBox_Checked" Unchecked="IncludeIgnoredCheckBox_Checked" />
+                <Label Content="Include Ignored"/>
             </DockPanel>
-            <ListView x:Name="ResultsListView" Grid.Row="1">
+            <ListView x:Name="ResultsListView" Grid.Row="1" ItemContainerStyle="{StaticResource itemstyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Text}">

@@ -35,10 +35,12 @@ namespace WindmillHelix.Companion99.Services
             return zone;
         }
 
-        public WhoResult ParseWhoResultLine(string line, string serverName, string defaultZone)
+        public WhoResult ParseWhoResultLine(string line, DateTime eventDate, string serverName, string defaultZone)
         {
             var result = new WhoResult();
             result.ServerName = serverName;
+            result.EventDate = eventDate;
+            result.OriginalLine = line;
 
             if(line.StartsWith(" <LINKDEAD>"))
             {

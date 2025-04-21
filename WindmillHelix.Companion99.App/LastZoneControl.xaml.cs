@@ -56,14 +56,22 @@ namespace WindmillHelix.Companion99.App
             thread.Start();
 
             DeleteCommand = new GenericCommand(DeleteSelectedItem);
+            DeleteCommand = new GenericCommand(HandleContextMenuCommand);
         }
 
         public ICommand DeleteCommand { get; private set; }
 
+        public ICommand ContextMenuCommand { get; private set; }
+
+        private void HandleContextMenuCommand()
+        {
+
+        }
+
         private void DeleteSelectedItem()
         {
             var selected = ResultsListView.SelectedItem as CharacterZoneViewModel;
-            if(selected == null)
+            if (selected == null)
             {
                 return;
             }
@@ -78,7 +86,7 @@ namespace WindmillHelix.Companion99.App
 
             while (true)
             {
-                if(_items != null)
+                if (_items != null)
                 {
                     foreach (var item in _items)
                     {
@@ -101,11 +109,11 @@ namespace WindmillHelix.Companion99.App
             {
                 HandleZoneLine(serverName, characterName, eventDate, line);
             }
-            else if(line.StartsWith(CurrentBindPrefix))
+            else if (line.StartsWith(CurrentBindPrefix))
             {
                 HandleCurrentBindLine(serverName, characterName, eventDate, line);
             }
-            else if(line == NewBindLine)
+            else if (line == NewBindLine)
             {
                 HandleNewBindLine(serverName, characterName, eventDate, line);
             }
@@ -128,10 +136,10 @@ namespace WindmillHelix.Companion99.App
 
         private void HandleNewBindLine(string serverName, string characterName, DateTime eventDate, string line)
         {
-            var current = _items.SingleOrDefault(x => x.ServerName.EqualsIngoreCase(serverName) 
+            var current = _items.SingleOrDefault(x => x.ServerName.EqualsIngoreCase(serverName)
                 && x.CharacterName.Equals(characterName));
 
-            if(!string.IsNullOrWhiteSpace(current?.ZoneName))
+            if (!string.IsNullOrWhiteSpace(current?.ZoneName))
             {
                 _lastZoneService.SetBindPoint(serverName, characterName, current.ZoneName);
                 LoadZones();
@@ -147,7 +155,7 @@ namespace WindmillHelix.Companion99.App
             {
                 _items = items.Select(x => new CharacterZoneViewModel(x)).ToList();
             });
-            
+
             ApplyFilters();
         }
 
@@ -156,6 +164,7 @@ namespace WindmillHelix.Companion99.App
             _isResetting = true;
             try
             {
+                IncludeIgnoredCheckBox.IsChecked = false;
                 SearchTextBox.Clear();
                 _isResetting = false;
                 ApplyFilters();
@@ -176,15 +185,125 @@ namespace WindmillHelix.Companion99.App
                 if (!string.IsNullOrWhiteSpace(filter))
                 {
                     items = items.Where(
-                        x => x.Account.ContainsIngoreCase(filter) 
-                        || x.CharacterName.ContainsIngoreCase(filter) 
+                        x => x.Account.ContainsIngoreCase(filter)
+                        || x.CharacterName.ContainsIngoreCase(filter)
                         || x.ZoneName.ContainsIngoreCase(filter)
                         || x.BindZone.ContainsIngoreCase(filter)
                         || (filter.EqualsIngoreCase("sky") && x.SkyCorpseTimer.HasValue)).ToList();
                 }
 
+                var shouldIncludeIngored = IncludeIgnoredCheckBox.IsChecked ?? false;
+                items = items.Where(x => !x.IsIgnored || shouldIncludeIngored).ToList();
+
                 ResultsListView.ItemsSource = items;
             });
+        }
+
+        private void Row_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem deleteMenuItem = new MenuItem();
+            deleteMenuItem.Tag = sender;
+            deleteMenuItem.Header = "Delete";
+            menu.Items.Add(deleteMenuItem);
+
+            MenuItem ignoreMenuIte = new MenuItem();
+            deleteMenuItem.Tag = sender;
+            deleteMenuItem.Header = "Ignore";
+            menu.Items.Add(deleteMenuItem);
+
+            menu.IsOpen = true;
+        }
+
+        private void GridView_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        protected void HandleRightClick(object sender, MouseButtonEventArgs e)
+        {
+            var selected = ResultsListView.SelectedItem as CharacterZoneViewModel;
+            if (selected == null)
+            {
+                return;
+            }
+
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem deleteMenuItem = new MenuItem();
+            deleteMenuItem.Tag = selected;
+            deleteMenuItem.Header = "Delete";
+            deleteMenuItem.Click += DeleteMenuItem_Click;
+            menu.Items.Add(deleteMenuItem);
+
+            if (selected.IsIgnored)
+            {
+                MenuItem ignoreMenuItem = new MenuItem();
+                ignoreMenuItem.Tag = selected;
+                ignoreMenuItem.Header = "Unignore";
+                ignoreMenuItem.Click += UnignoreMenuItem_Click;
+                menu.Items.Add(ignoreMenuItem);
+            }
+            else
+            {
+                MenuItem ignoreMenuItem = new MenuItem();
+                ignoreMenuItem.Tag = selected;
+                ignoreMenuItem.Header = "Ignore";
+                ignoreMenuItem.Click += IgnoreMenuItem_Click;
+                menu.Items.Add(ignoreMenuItem);
+            }
+
+            menu.IsOpen = true;
+        }
+
+        private void IgnoreMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var item = menuItem?.Tag as CharacterZoneViewModel;
+            if(item == null)
+            {
+                return;
+            }
+
+            _lastZoneService.SetIgnored(item.ServerName, item.CharacterName, true);
+            LoadZones();
+        }
+
+        private void UnignoreMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var item = menuItem?.Tag as CharacterZoneViewModel;
+            if (item == null)
+            {
+                return;
+            }
+
+            _lastZoneService.SetIgnored(item.ServerName, item.CharacterName, false);
+            LoadZones();
+        }
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var item = menuItem?.Tag as CharacterZoneViewModel;
+            if (item == null)
+            {
+                return;
+            }
+
+            _lastZoneService.RemoveEntry(item.ServerName, item.CharacterName);
+            LoadZones();
+        }
+
+        private void IncludeIgnoredCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if(_isResetting)
+            {
+                return;
+            }
+
+            LoadZones();
         }
     }
 }

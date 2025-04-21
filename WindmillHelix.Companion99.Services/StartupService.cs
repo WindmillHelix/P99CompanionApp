@@ -5,16 +5,19 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WindmillHelix.Companion99.Common;
+using WindmillHelix.Companion99.Data;
 
 namespace WindmillHelix.Companion99.Services
 {
     public class StartupService : IStartupService
     {
         private readonly IConfigurationService _configurationService;
+        private readonly IDatabaseInitializer _databaseInitializer;
 
-        public StartupService(IConfigurationService configurationService)
+        public StartupService(IConfigurationService configurationService, IDatabaseInitializer databaseInitializer)
         {
             _configurationService = configurationService;
+            _databaseInitializer = databaseInitializer;
         }
 
         public void EnsureDataDirectoryExists()
@@ -24,6 +27,11 @@ namespace WindmillHelix.Companion99.Services
             {
                 Directory.CreateDirectory(dataFolder);
             }
+        }
+
+        public void InitializeDatabase()
+        {
+            _databaseInitializer.Execute();
         }
 
         public bool IsEverQuestDirectoryValid()

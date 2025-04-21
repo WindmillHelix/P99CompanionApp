@@ -29,6 +29,8 @@ namespace WindmillHelix.Companion99.App.ViewModels
 
         public string BindZone => _model.BindZone;
 
+        public bool IsIgnored => _model.IsIgnored;
+
         public TimeSpan? SkyCorpseTimer
         {
             get

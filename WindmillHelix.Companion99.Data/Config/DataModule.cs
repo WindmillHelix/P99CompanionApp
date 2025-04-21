@@ -11,8 +11,15 @@ namespace WindmillHelix.Companion99.Data.Config
     {
         protected override void Load(ContainerBuilder builder)
         {
+            var suffixes = new List<string>();
+            suffixes.Add("Repository");
+            suffixes.Add("Service");
+            suffixes.Add("Factory");
+            suffixes.Add("Initializer");
+            suffixes.Add("Migrator");
+
             builder.RegisterTypes(
-                ThisAssembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && !x.IsInterface && x.Name.EndsWith("Service")).ToArray())
+                ThisAssembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && !x.IsInterface && suffixes.Any(s => x.Name.EndsWith(s))).ToArray())
                 .AsImplementedInterfaces()
                 .SingleInstance();
         }

@@ -1,0 +1,4 @@
+﻿CREATE TABLE IF NOT EXISTS SqlVersion 
+(
+	ScriptName VARCHAR(50) NOT NULL PRIMARY KEY
+);

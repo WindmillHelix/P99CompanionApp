@@ -16,35 +16,47 @@
         <ToolBar Grid.Row="0">
             <ToolBar.Items>
                 <local:MyLastRollControl/>
-                <local:AncientCyclopsTimerControl x:Name="AncientCyclopsTimerControl" />
+                
             </ToolBar.Items>
         </ToolBar>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Margin="0,2,15,2">
+            <local:AncientCyclopsTimerControl x:Name="AncientCyclopsTimerControl" Margin="0,0,5,0" />
+            <Button x:Name="StopwatchButton" HorizontalAlignment="Right" Click="StopwatchButton_Click">
+                <Button.Content>
+                    <Image Source="Resources/icons/stopwatch.png" Width="20" Height="20"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="MapButton" HorizontalAlignment="Right" Click="MapButton_Click">
+                <Button.Content>
+                    <Image Source="Resources/icons/globe.png" Width="20" Height="20"/>
+                </Button.Content>
+            </Button>            
+        </StackPanel>
+        
         <TabControl Grid.Row="1">
-            <TabItem Header="Main">
-                <ScrollViewer>
-                    <local:WhoResultsControl />
-                </ScrollViewer>
+            <TabItem Header="Main" Width="66">
+                <local:WhoResultsControl />
             </TabItem>
-            <TabItem Header="Inventory">
+            <TabItem Header="Rolls" Width="66">
+                <local:RandomsControl />
+            </TabItem>
+            <TabItem Header="Inventory" Width="66">
                 <local:InventoryControl />
             </TabItem>
-            <TabItem Header="Spells">
+            <TabItem Header="Spells" Width="66">
                 <local:SpellbookControl />
             </TabItem>
-            <TabItem Header="Notes">
+            <TabItem Header="Notes" Width="66">
                 <local:NotesControl />
             </TabItem>
-            <TabItem Header="Park Info">
+            <TabItem Header="Park Info" Width="66">
                 <local:LastZoneControl />
-            </TabItem>            
-            <TabItem Header="Socials">
+            </TabItem>
+            <TabItem Header="Socials" Width="66">
                 <local:SocialsControl />
-            </TabItem>            
-            <TabItem Header="Settings">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                    </StackPanel>
-                </StackPanel>
+            </TabItem>
+            <TabItem Header="Settings" Width="66">
+                <local:SettingsControl />
             </TabItem>
         </TabControl>
         <StatusBar Grid.Row="2">
