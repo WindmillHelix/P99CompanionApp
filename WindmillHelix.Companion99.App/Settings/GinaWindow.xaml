@@ -20,6 +20,6 @@
         <Label x:Name="GinaStatusLabel" Grid.Row="0" Grid.Column="1" />
         
         <Label Content="Auto Start GINA" Grid.Row="1" Grid.Column="0" />
-        <CheckBox x:Name="AutoStartGinaCheckBox" Checked="AutoStartGinaCheckBox_Checked" Unchecked="AutoStartGinaCheckBox_Checked" Grid.Row="1" Grid.Column="1"/>
+        <CheckBox x:Name="AutoStartGinaCheckBox" VerticalAlignment="Center" Checked="AutoStartGinaCheckBox_Checked" Unchecked="AutoStartGinaCheckBox_Checked" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>

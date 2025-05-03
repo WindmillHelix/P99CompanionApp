@@ -22,7 +22,7 @@
         <TextBox IsEnabled="False" x:Name="HostTextBox" Grid.Row="0" Grid.Column="1" />
 
         <Label Content="Auto Start Middleman:" Grid.Row="1" Grid.Column="0"/>
-        <CheckBox x:Name="AutoStartMiddlemanCheckBox" IsThreeState="False" Checked="AutoStartMiddlemanCheckBox_Checked" Unchecked="AutoStartMiddlemanCheckBox_Checked" Grid.Row="1" Grid.Column="1"/>
+        <CheckBox x:Name="AutoStartMiddlemanCheckBox" VerticalAlignment="Center" IsThreeState="False" Checked="AutoStartMiddlemanCheckBox_Checked" Unchecked="AutoStartMiddlemanCheckBox_Checked" Grid.Row="1" Grid.Column="1"/>
 
         <Label Content="Middleman Status:" Grid.Row="2" Grid.Column="0"/>
         <Label x:Name="MiddlemanStatusLabel" Grid.Row="2" Grid.Column="1" />
