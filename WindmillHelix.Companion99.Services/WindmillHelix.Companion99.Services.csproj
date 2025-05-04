@@ -9,13 +9,13 @@
   <ItemGroup>
     <None Remove="Resources\Quests.xml" />
     <None Remove="Resources\Spells.xml" />
-    <None Remove="Resources\zones.txt" />
+    <None Remove="Resources\zones.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Quests.xml" />
     <EmbeddedResource Include="Resources\Spells.xml" />
-    <EmbeddedResource Include="Resources\zones.txt" />
+    <EmbeddedResource Include="Resources\zones.json" />
   </ItemGroup>
 
   <ItemGroup>
