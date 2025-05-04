@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using WindmillHelix.Companion99.Common;
+using WindmillHelix.Companion99.Services.Models;
 
 namespace WindmillHelix.Companion99.Services.Maps
 {
     public class ZoneLookupService : IZoneLookupService
     {
-        private Dictionary<string, string> _longToShortMap = new Dictionary<string, string>();
+        private Dictionary<string, string> _longToShortMap 
+            = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        private Dictionary<string, ZoneInfo> _shortNameToZoneMap 
+            = new Dictionary<string, ZoneInfo>(StringComparer.OrdinalIgnoreCase);
 
         public ZoneLookupService()
         {
@@ -18,19 +24,17 @@ namespace WindmillHelix.Companion99.Services.Maps
 
         private void LoadMappings()
         {
-            var zoneData = ResourceHelper.GetResourceString("Resources.zones.txt");
-            zoneData = zoneData.Trim().Replace("\r\n", "\n");
-            var lines = zoneData.Split('\n');
+            var json = ResourceHelper.GetResourceString("Resources.zones.json");
 
-            foreach (var line in lines)
+            var zones = JsonSerializer.Deserialize<ZoneInfo[]>(json);
+
+            foreach(var zone in zones)
             {
-                var firstIndex = line.IndexOf(" ");
-                var secondIndex = line.IndexOf(" ", firstIndex + 1);
-                var shortName = line.Substring(firstIndex + 1, secondIndex - firstIndex).Trim();
-                var longName = line.Substring(secondIndex + 1).Trim().ToLowerInvariant();
-                if (!_longToShortMap.ContainsKey(longName))
-                {
-                    _longToShortMap.Add(longName, shortName);
+                _shortNameToZoneMap.Add(zone.ShortName, zone);
+
+                foreach (var longName in zone.LongNames)
+                { 
+                    _longToShortMap.Add(longName, zone.ShortName);
                 }
             }
         }

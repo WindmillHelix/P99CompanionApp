@@ -1,0 +1,783 @@
+[
+  {
+    "ShortName": "airplane",
+    "LongNames": [
+      "Plane Of Air",
+      "Plane Of Sky"
+    ]
+  },
+  {
+    "ShortName": "akanon",
+    "LongNames": [
+      "Ak\u0027anon"
+    ]
+  },
+  {
+    "ShortName": "arena",
+    "LongNames": [
+      "Arena"
+    ]
+  },
+  {
+    "ShortName": "befallen",
+    "LongNames": [
+      "Befallen"
+    ]
+  },
+  {
+    "ShortName": "beholder",
+    "LongNames": [
+      "Gorge Of King Xorbb"
+    ]
+  },
+  {
+    "ShortName": "blackburrow",
+    "LongNames": [
+      "Blackburrow"
+    ]
+  },
+  {
+    "ShortName": "burningwood",
+    "LongNames": [
+      "The Burning Wood",
+      "Burning Woods"
+    ]
+  },
+  {
+    "ShortName": "butcher",
+    "LongNames": [
+      "Butcherblock Mountains"
+    ]
+  },
+  {
+    "ShortName": "cabeast",
+    "LongNames": [
+      "Cabilis East",
+      "East Cabilis"
+    ]
+  },
+  {
+    "ShortName": "cabwest",
+    "LongNames": [
+      "Cabilis West",
+      "West Cabilis"
+    ]
+  },
+  {
+    "ShortName": "cauldron",
+    "LongNames": [
+      "Dagnor\u0027s Cauldron"
+    ]
+  },
+  {
+    "ShortName": "cazicthule",
+    "LongNames": [
+      "Lost Temple Of Cazic-Thule",
+      "Lost Temple Of Cazicthule",
+      "Cazic-Thule"
+    ]
+  },
+  {
+    "ShortName": "charasis",
+    "LongNames": [
+      "Howling Stones"
+    ]
+  },
+  {
+    "ShortName": "chardok",
+    "LongNames": [
+      "Chardok"
+    ]
+  },
+  {
+    "ShortName": "citymist",
+    "LongNames": [
+      "The City Of Mist",
+      "City Of Mist"
+    ]
+  },
+  {
+    "ShortName": "cobaltscar",
+    "LongNames": [
+      "Cobalt Scar"
+    ]
+  },
+  {
+    "ShortName": "commons",
+    "LongNames": [
+      "West Commonlands"
+    ]
+  },
+  {
+    "ShortName": "crushbone",
+    "LongNames": [
+      "Crushbone",
+      "Clan Crushbone"
+    ]
+  },
+  {
+    "ShortName": "crystal",
+    "LongNames": [
+      "Crystal Caverns"
+    ]
+  },
+  {
+    "ShortName": "dalnir",
+    "LongNames": [
+      "Dalnir"
+    ]
+  },
+  {
+    "ShortName": "dreadlands",
+    "LongNames": [
+      "Dreadlands"
+    ]
+  },
+  {
+    "ShortName": "droga",
+    "LongNames": [
+      "Temple Of Droga"
+    ]
+  },
+  {
+    "ShortName": "eastkarana",
+    "LongNames": [
+      "Eastern Plains Of Karana",
+      "East Karana"
+    ]
+  },
+  {
+    "ShortName": "eastwastes",
+    "LongNames": [
+      "Eastern Wastelands",
+      "Eastern Wastes"
+    ]
+  },
+  {
+    "ShortName": "ecommons",
+    "LongNames": [
+      "East Commonlands"
+    ]
+  },
+  {
+    "ShortName": "emeraldjungle",
+    "LongNames": [
+      "The Emerald Jungle"
+    ]
+  },
+  {
+    "ShortName": "erudnext",
+    "LongNames": [
+      "Erudin"
+    ]
+  },
+  {
+    "ShortName": "erudnint",
+    "LongNames": [
+      "Erudin Palace"
+    ]
+  },
+  {
+    "ShortName": "erudsxing",
+    "LongNames": [
+      "Erud\u0027s Crossing"
+    ]
+  },
+  {
+    "ShortName": "everfrost",
+    "LongNames": [
+      "Everfrost",
+      "Everfrost Peaks"
+    ]
+  },
+  {
+    "ShortName": "fearplane",
+    "LongNames": [
+      "Plane Of Fear"
+    ]
+  },
+  {
+    "ShortName": "feerrott",
+    "LongNames": [
+      "The Feerrott"
+    ]
+  },
+  {
+    "ShortName": "felwithea",
+    "LongNames": [
+      "Northern Felwithe",
+      "Felwithe"
+    ]
+  },
+  {
+    "ShortName": "felwitheb",
+    "LongNames": [
+      "Southern Felwithe"
+    ]
+  },
+  {
+    "ShortName": "fieldofbone",
+    "LongNames": [
+      "Field Of Bone",
+      "The Field Of Bone"
+    ]
+  },
+  {
+    "ShortName": "firiona",
+    "LongNames": [
+      "Firiona Vie"
+    ]
+  },
+  {
+    "ShortName": "freporte",
+    "LongNames": [
+      "East Freeport"
+    ]
+  },
+  {
+    "ShortName": "freportn",
+    "LongNames": [
+      "North Freeport"
+    ]
+  },
+  {
+    "ShortName": "freportw",
+    "LongNames": [
+      "West Freeport"
+    ]
+  },
+  {
+    "ShortName": "frontiermtns",
+    "LongNames": [
+      "Frontier Mountains"
+    ]
+  },
+  {
+    "ShortName": "frozenshadow",
+    "LongNames": [
+      "Tower Of Frozen Shadow"
+    ]
+  },
+  {
+    "ShortName": "gfaydark",
+    "LongNames": [
+      "Greater Faydark"
+    ]
+  },
+  {
+    "ShortName": "greatdivide",
+    "LongNames": [
+      "Great Divide"
+    ]
+  },
+  {
+    "ShortName": "grobb",
+    "LongNames": [
+      "Grobb"
+    ]
+  },
+  {
+    "ShortName": "growthplane",
+    "LongNames": [
+      "Plane Of Growth"
+    ]
+  },
+  {
+    "ShortName": "gukbottom",
+    "LongNames": [
+      "Ruins Of Old Guk",
+      "Lower Guk"
+    ]
+  },
+  {
+    "ShortName": "guktop",
+    "LongNames": [
+      "Guk",
+      "Upper Guk"
+    ]
+  },
+  {
+    "ShortName": "halas",
+    "LongNames": [
+      "Halas"
+    ]
+  },
+  {
+    "ShortName": "hateplane",
+    "LongNames": [
+      "Plane Of Hate",
+      "The Plane Of Hate"
+    ]
+  },
+  {
+    "ShortName": "highkeep",
+    "LongNames": [
+      "High Keep",
+      "Highkeep"
+    ]
+  },
+  {
+    "ShortName": "highpass",
+    "LongNames": [
+      "Highpass Hold"
+    ]
+  },
+  {
+    "ShortName": "hole",
+    "LongNames": [
+      "The Hole",
+      "The Ruins Of Old Paineel"
+    ]
+  },
+  {
+    "ShortName": "iceclad",
+    "LongNames": [
+      "Iceclad Ocean"
+    ]
+  },
+  {
+    "ShortName": "innothule",
+    "LongNames": [
+      "Innothule Swamp"
+    ]
+  },
+  {
+    "ShortName": "kael",
+    "LongNames": [
+      "Kael Drakkel",
+      "Kael Drakkal"
+    ]
+  },
+  {
+    "ShortName": "kaesora",
+    "LongNames": [
+      "Kaesora"
+    ]
+  },
+  {
+    "ShortName": "kaladima",
+    "LongNames": [
+      "South Kaladim",
+      "Kaladim"
+    ]
+  },
+  {
+    "ShortName": "kaladimb",
+    "LongNames": [
+      "North Kaladim"
+    ]
+  },
+  {
+    "ShortName": "karnor",
+    "LongNames": [
+      "Karnor\u0027s Castle"
+    ]
+  },
+  {
+    "ShortName": "kedge",
+    "LongNames": [
+      "Kedge Keep"
+    ]
+  },
+  {
+    "ShortName": "kerraridge",
+    "LongNames": [
+      "Kerra Isle"
+    ]
+  },
+  {
+    "ShortName": "kithicor",
+    "LongNames": [
+      "Kithicor Woods",
+      "Kithicor Forest"
+    ]
+  },
+  {
+    "ShortName": "kurn",
+    "LongNames": [
+      "Kurn\u0027s Tower"
+    ]
+  },
+  {
+    "ShortName": "lakeofillomen",
+    "LongNames": [
+      "Lake Of Ill Omen"
+    ]
+  },
+  {
+    "ShortName": "lakerathe",
+    "LongNames": [
+      "Lake Rathetear"
+    ]
+  },
+  {
+    "ShortName": "lavastorm",
+    "LongNames": [
+      "Lavastorm Mountains"
+    ]
+  },
+  {
+    "ShortName": "lfaydark",
+    "LongNames": [
+      "Lesser Faydark"
+    ]
+  },
+  {
+    "ShortName": "mischiefplane",
+    "LongNames": [
+      "Plane Of Mischief"
+    ]
+  },
+  {
+    "ShortName": "mistmoore",
+    "LongNames": [
+      "Castle Mistmoore",
+      "Castle Of Mistmoore"
+    ]
+  },
+  {
+    "ShortName": "misty",
+    "LongNames": [
+      "Misty Thicket"
+    ]
+  },
+  {
+    "ShortName": "myriah",
+    "LongNames": [
+      "Domain Of Frost"
+    ]
+  },
+  {
+    "ShortName": "najena",
+    "LongNames": [
+      "Najena"
+    ]
+  },
+  {
+    "ShortName": "necropolis",
+    "LongNames": [
+      "Dragon Necropolis"
+    ]
+  },
+  {
+    "ShortName": "nektulos",
+    "LongNames": [
+      "The Nektulos Forest",
+      "Nektulos Forest"
+    ]
+  },
+  {
+    "ShortName": "neriaka",
+    "LongNames": [
+      "Neriak Foreign Quarter",
+      "Neriak - Foreign Quarter"
+    ]
+  },
+  {
+    "ShortName": "neriakb",
+    "LongNames": [
+      "Neriak - Commons",
+      "Neriak Commons"
+    ]
+  },
+  {
+    "ShortName": "neriakc",
+    "LongNames": [
+      "Neriak Third Gate",
+      "Neriak - 3Rd Gate"
+    ]
+  },
+  {
+    "ShortName": "northkarana",
+    "LongNames": [
+      "Northern Plains Of Karana",
+      "North Karana"
+    ]
+  },
+  {
+    "ShortName": "nro",
+    "LongNames": [
+      "Northern Desert Of Ro",
+      "North Ro"
+    ]
+  },
+  {
+    "ShortName": "nurga",
+    "LongNames": [
+      "Mines Of Nurga"
+    ]
+  },
+  {
+    "ShortName": "oasis",
+    "LongNames": [
+      "Oasis Of Marr"
+    ]
+  },
+  {
+    "ShortName": "oggok",
+    "LongNames": [
+      "Oggok"
+    ]
+  },
+  {
+    "ShortName": "oot",
+    "LongNames": [
+      "Ocean Of Tears"
+    ]
+  },
+  {
+    "ShortName": "overthere",
+    "LongNames": [
+      "The Overthere"
+    ]
+  },
+  {
+    "ShortName": "paineel",
+    "LongNames": [
+      "Paineel"
+    ]
+  },
+  {
+    "ShortName": "paw",
+    "LongNames": [
+      "Infected Paw",
+      "Lair Of The Splitpaw"
+    ]
+  },
+  {
+    "ShortName": "permafrost",
+    "LongNames": [
+      "Permafrost Caverns",
+      "Permafrost Keep"
+    ]
+  },
+  {
+    "ShortName": "qcat",
+    "LongNames": [
+      "Qeynos Aqueduct System",
+      "Qeynos Catacombs"
+    ]
+  },
+  {
+    "ShortName": "qey2hh1",
+    "LongNames": [
+      "Western Plains Of Karana",
+      "West Karana"
+    ]
+  },
+  {
+    "ShortName": "qeynos",
+    "LongNames": [
+      "South Qeynos"
+    ]
+  },
+  {
+    "ShortName": "qeynos2",
+    "LongNames": [
+      "North Qeynos"
+    ]
+  },
+  {
+    "ShortName": "qeytoqrg",
+    "LongNames": [
+      "Qeynos Hills"
+    ]
+  },
+  {
+    "ShortName": "qrg",
+    "LongNames": [
+      "Surefall Glade"
+    ]
+  },
+  {
+    "ShortName": "rathemtn",
+    "LongNames": [
+      "Rathe Mountains",
+      "Mountains Of Rathe"
+    ]
+  },
+  {
+    "ShortName": "rivervale",
+    "LongNames": [
+      "Rivervale"
+    ]
+  },
+  {
+    "ShortName": "runnyeye",
+    "LongNames": [
+      "Runnyeye Citadel",
+      "Clan Runnyeye"
+    ]
+  },
+  {
+    "ShortName": "sebilis",
+    "LongNames": [
+      "Ruins Of Sebilis",
+      "Old Sebilis"
+    ]
+  },
+  {
+    "ShortName": "sirens",
+    "LongNames": [
+      "Sirens Grotto",
+      "Siren\u0027s Grotto"
+    ]
+  },
+  {
+    "ShortName": "skyfire",
+    "LongNames": [
+      "Skyfire Mountains"
+    ]
+  },
+  {
+    "ShortName": "skyshrine",
+    "LongNames": [
+      "Skyshrine"
+    ]
+  },
+  {
+    "ShortName": "sleeper",
+    "LongNames": [
+      "Sleepers Tomb",
+      "Sleeper\u0027s Tomb"
+    ]
+  },
+  {
+    "ShortName": "soldunga",
+    "LongNames": [
+      "Solusek\u0027s Eye"
+    ]
+  },
+  {
+    "ShortName": "soldungb",
+    "LongNames": [
+      "Nagafen\u0027s Lair"
+    ]
+  },
+  {
+    "ShortName": "soltemple",
+    "LongNames": [
+      "Temple Of Solusek Ro"
+    ]
+  },
+  {
+    "ShortName": "southkarana",
+    "LongNames": [
+      "Southern Plains Of Karana",
+      "South Karana"
+    ]
+  },
+  {
+    "ShortName": "sro",
+    "LongNames": [
+      "Southern Desert Of Ro",
+      "South Ro"
+    ]
+  },
+  {
+    "ShortName": "steamfont",
+    "LongNames": [
+      "Steamfont Mountains"
+    ]
+  },
+  {
+    "ShortName": "stonebrunt",
+    "LongNames": [
+      "Stonebrunt Mountains"
+    ]
+  },
+  {
+    "ShortName": "swampofnohope",
+    "LongNames": [
+      "Swamp Of No Hope"
+    ]
+  },
+  {
+    "ShortName": "templeveeshan",
+    "LongNames": [
+      "Temple Of Veeshan"
+    ]
+  },
+  {
+    "ShortName": "thurgadina",
+    "LongNames": [
+      "City Of Thurgadin",
+      "Thurgadin"
+    ]
+  },
+  {
+    "ShortName": "thurgadinb",
+    "LongNames": [
+      "Icewell Keep"
+    ]
+  },
+  {
+    "ShortName": "timorous",
+    "LongNames": [
+      "Timorous Deep"
+    ]
+  },
+  {
+    "ShortName": "towerfrost",
+    "LongNames": [
+      "Oops, All Icebones!"
+    ]
+  },
+  {
+    "ShortName": "tox",
+    "LongNames": [
+      "Toxxulia Forest"
+    ]
+  },
+  {
+    "ShortName": "trakanon",
+    "LongNames": [
+      "Trakanon\u0027s Teeth"
+    ]
+  },
+  {
+    "ShortName": "unrest",
+    "LongNames": [
+      "Estate Of Unrest"
+    ]
+  },
+  {
+    "ShortName": "veeshan",
+    "LongNames": [
+      "Veeshan\u0027s Peak"
+    ]
+  },
+  {
+    "ShortName": "velketor",
+    "LongNames": [
+      "Velketor\u0027s Labyrinth"
+    ]
+  },
+  {
+    "ShortName": "wakening",
+    "LongNames": [
+      "The Wakening Lands",
+      "The Wakening Land"
+    ]
+  },
+  {
+    "ShortName": "warrens",
+    "LongNames": [
+      "Warrens",
+      "The Warrens"
+    ]
+  },
+  {
+    "ShortName": "warslikswood",
+    "LongNames": [
+      "Warsliks Woods",
+      "Warsliks Wood"
+    ]
+  },
+  {
+    "ShortName": "westwastes",
+    "LongNames": [
+      "Western Wastes"
+    ]
+  }
+]
