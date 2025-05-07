@@ -18,6 +18,7 @@
     <None Remove="Resources\Discord-Transfer.png" />
     <None Remove="Resources\DiscordOverlay.png" />
     <None Remove="Resources\Gina.png" />
+    <None Remove="Resources\icons\FolderBrowser.png" />
     <None Remove="Resources\icons\globe.png" />
     <None Remove="Resources\icons\LogExport.png" />
     <None Remove="Resources\icons\stopwatch.png" />
@@ -43,6 +44,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Gina.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\icons\FolderBrowser.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\icons\globe.png">

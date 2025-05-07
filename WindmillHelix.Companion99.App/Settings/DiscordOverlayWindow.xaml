@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App.Settings"
         mc:Ignorable="d"
-        Title="DiscordOverlayWindow" Height="450" Width="800">
+        Title="Discord Overlay Setup" Height="450" Width="975" MinWidth="975">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="120"/>
@@ -14,11 +14,11 @@
         <StackPanel Orientation="Vertical" Grid.Column="0">
             <Button x:Name="EnableButton" Content="Enable" Width="100" Height="28" Click="EnableButton_Click"/>
             <Button x:Name="DisableButton" Content="Disable" Width="100" Height="28" Click="DisableButton_Click"/>
+
+            <Button x:Name="InstructionsButton" Content="Instructions" Width="100" Height="28" Margin="0,20,0,0" Click="InstructionsButton_Click" />
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Column="1">
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Instructions go here"/>
-            </StackPanel>
+            <WebBrowser x:Name="InstructionsWebBrowser"/>
         </ScrollViewer>
         
     </Grid>

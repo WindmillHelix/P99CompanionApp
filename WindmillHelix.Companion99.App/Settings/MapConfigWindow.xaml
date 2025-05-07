@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindmillHelix.Companion99.App.Settings"
         mc:Ignorable="d"
-        Title="MapConfigWindow" Height="450" Width="800">
+        Title="P99 Companion - Map Configuration" Height="100" Width="420">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
@@ -14,12 +14,18 @@
             <RowDefinition Height="28"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="280"/>
         </Grid.ColumnDefinitions>
 
         <Label Content="Map Folder:" Grid.Row="0" Grid.Column="0" />
-        <TextBox x:Name="MapFolderTextBox" Grid.Row="0" Grid.Column="1" />
+        <StackPanel Orientation="Horizontal"  Grid.Row="0" Grid.Column="1">
+            <TextBox x:Name="MapFolderTextBox" IsReadOnly="True" Width="250" Height="22" VerticalAlignment="Center" IsEnabled="False"/>
+            <Button x:Name="MapFolderBrowseButton" Width="24" Height="22"  Click="MapFolderBrowseButton_Click">
+                <Image Source="/Resources/icons/FolderBrowser.png" Height="20" Width="20"/>
+            </Button>
+        </StackPanel>
+        
 
         <Button x:Name="SaveButton" Content="Save" Click="SaveButton_Click" Width="120" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
     </Grid>
